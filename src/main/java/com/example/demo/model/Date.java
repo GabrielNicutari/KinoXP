@@ -55,5 +55,4 @@ public class Date {
         return Objects.hash(id, startDate, endDate);
     }
 
-
 }

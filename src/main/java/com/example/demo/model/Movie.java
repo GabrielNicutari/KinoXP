@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.Clock;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -12,8 +15,37 @@ public class Movie {
     private Integer ageRequirement;
     private int duration;
     private String genre;
-    private String desctiption;
+    private String description;
 
+    //fields from actor
+    private String name;
+
+    //fields from room
+    private String type;
+
+    //fields from date
+    private java.sql.Date startDate;
+    private java.sql.Date endDate;
+
+    //fields from showtime
+    private Time startTime;
+
+    public Movie() {}
+
+    public Movie(int id, String title, Integer ageRequirement, int duration, String genre, String description,
+                 String name, String type, Date startDate, Date endDate, Time startTime) {
+        this.id = id;
+        this.title = title;
+        this.ageRequirement = ageRequirement;
+        this.duration = duration;
+        this.genre = genre;
+        this.description = description;
+        this.name = name;
+        this.type = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startTime = startTime;
+    }
 
     public int getId() {
         return id;
@@ -55,12 +87,52 @@ public class Movie {
         this.genre = genre;
     }
 
-    public String getDesctiption() {
-        return desctiption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesctiption(String desctiption) {
-        this.desctiption = desctiption;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public java.sql.Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(java.sql.Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public java.sql.Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
     }
 
     @Override
@@ -73,12 +145,12 @@ public class Movie {
                 Objects.equals(title, that.title) &&
                 Objects.equals(ageRequirement, that.ageRequirement) &&
                 Objects.equals(genre, that.genre) &&
-                Objects.equals(desctiption, that.desctiption);
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, ageRequirement, duration, genre, desctiption);
+        return Objects.hash(id, title, ageRequirement, duration, genre, description);
     }
 
     @Override
@@ -89,20 +161,12 @@ public class Movie {
                 ", ageRequirement=" + ageRequirement +
                 ", duration=" + duration +
                 ", genre='" + genre + '\'' +
-                ", desctiption='" + desctiption + '\'' +
+                ", description='" + description + '\'' +
+                ", actor='" + name + '\'' +
+                ", room='" + type + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", showtime=" + startTime +
                 '}';
-    }
-
-    public Movie(int id, String title, Integer ageRequirement, int duration, String genre, String desctiption) {
-        this.id = id;
-        this.title = title;
-        this.ageRequirement = ageRequirement;
-        this.duration = duration;
-        this.genre = genre;
-        this.desctiption = desctiption;
-    }
-
-    public Movie() {
-
     }
 }
