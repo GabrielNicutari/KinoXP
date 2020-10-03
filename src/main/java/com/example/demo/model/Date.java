@@ -1,17 +1,14 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "date", schema = "kinoxpcheetas", catalog = "")
-public class DateEntity {
+public class Date {
     private int id;
-    private Date startDate;
-    private Date endDate;
-    private Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById;
+    private java.sql.Date startDate;
+    private java.sql.Date endDate;
 
     @Id
     @Column(name = "id")
@@ -25,21 +22,21 @@ public class DateEntity {
 
     @Basic
     @Column(name = "start_date")
-    public Date getStartDate() {
+    public java.sql.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(java.sql.Date startDate) {
         this.startDate = startDate;
     }
 
     @Basic
     @Column(name = "end_date")
-    public Date getEndDate() {
+    public java.sql.Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(java.sql.Date endDate) {
         this.endDate = endDate;
     }
 
@@ -47,7 +44,7 @@ public class DateEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DateEntity that = (DateEntity) o;
+        Date that = (Date) o;
         return id == that.id &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(endDate, that.endDate);
@@ -58,12 +55,5 @@ public class DateEntity {
         return Objects.hash(id, startDate, endDate);
     }
 
-    @OneToMany(mappedBy = "dateByDateId")
-    public Collection<MovieHasDateHasShowtimeHasRoomEntity> getMovieHasDateHasShowtimeHasRoomsById() {
-        return movieHasDateHasShowtimeHasRoomsById;
-    }
 
-    public void setMovieHasDateHasShowtimeHasRoomsById(Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById) {
-        this.movieHasDateHasShowtimeHasRoomsById = movieHasDateHasShowtimeHasRoomsById;
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,14 +11,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 ;
 @Repository
-public class ActorRepo {
+public class MovieRepo {
+
     @Autowired
     JdbcTemplate jdbcTemplate;
-    public List<Actor> fetchAll(){
-        String query = "SELECT * FROM actor;";
-        RowMapper<Actor> rm = new BeanPropertyRowMapper<>(Actor.class);
-        List<Actor> ls = jdbcTemplate.query(query,rm);
-        System.out.println(rm);
-        return ls;
+    public List<Movie> fetchAll(){
+        String query = "SELECT * FROM movie;";
+        RowMapper<Movie> rm = new BeanPropertyRowMapper<>(Movie.class);
+        return jdbcTemplate.query(query, rm);
     }
+
 }

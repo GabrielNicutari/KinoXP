@@ -5,19 +5,16 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "movie", schema = "kinoxpcheetas", catalog = "")
-public class MovieEntity {
+public class Movie {
+    @Id
     private int id;
     private String title;
     private Integer ageRequirement;
     private int duration;
     private String genre;
     private String desctiption;
-    private Collection<MovieHasActorEntity> movieHasActorsById;
-    private Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById;
 
-    @Id
-    @Column(name = "id")
+
     public int getId() {
         return id;
     }
@@ -26,8 +23,6 @@ public class MovieEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -36,8 +31,6 @@ public class MovieEntity {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "age_requirement")
     public Integer getAgeRequirement() {
         return ageRequirement;
     }
@@ -46,8 +39,6 @@ public class MovieEntity {
         this.ageRequirement = ageRequirement;
     }
 
-    @Basic
-    @Column(name = "duration")
     public int getDuration() {
         return duration;
     }
@@ -56,8 +47,6 @@ public class MovieEntity {
         this.duration = duration;
     }
 
-    @Basic
-    @Column(name = "genre")
     public String getGenre() {
         return genre;
     }
@@ -66,8 +55,6 @@ public class MovieEntity {
         this.genre = genre;
     }
 
-    @Basic
-    @Column(name = "desctiption")
     public String getDesctiption() {
         return desctiption;
     }
@@ -80,7 +67,7 @@ public class MovieEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovieEntity that = (MovieEntity) o;
+        Movie that = (Movie) o;
         return id == that.id &&
                 duration == that.duration &&
                 Objects.equals(title, that.title) &&
@@ -94,21 +81,28 @@ public class MovieEntity {
         return Objects.hash(id, title, ageRequirement, duration, genre, desctiption);
     }
 
-    @OneToMany(mappedBy = "movieByMovieId")
-    public Collection<MovieHasActorEntity> getMovieHasActorsById() {
-        return movieHasActorsById;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", ageRequirement=" + ageRequirement +
+                ", duration=" + duration +
+                ", genre='" + genre + '\'' +
+                ", desctiption='" + desctiption + '\'' +
+                '}';
     }
 
-    public void setMovieHasActorsById(Collection<MovieHasActorEntity> movieHasActorsById) {
-        this.movieHasActorsById = movieHasActorsById;
+    public Movie(int id, String title, Integer ageRequirement, int duration, String genre, String desctiption) {
+        this.id = id;
+        this.title = title;
+        this.ageRequirement = ageRequirement;
+        this.duration = duration;
+        this.genre = genre;
+        this.desctiption = desctiption;
     }
 
-    @OneToMany(mappedBy = "movieByMovieId")
-    public Collection<MovieHasDateHasShowtimeHasRoomEntity> getMovieHasDateHasShowtimeHasRoomsById() {
-        return movieHasDateHasShowtimeHasRoomsById;
-    }
+    public Movie() {
 
-    public void setMovieHasDateHasShowtimeHasRoomsById(Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById) {
-        this.movieHasDateHasShowtimeHasRoomsById = movieHasDateHasShowtimeHasRoomsById;
     }
 }

@@ -2,15 +2,13 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "showtime", schema = "kinoxpcheetas", catalog = "")
-public class ShowtimeEntity {
+public class Showtime {
     private int id;
     private Time startTime;
-    private Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById;
 
     @Id
     @Column(name = "id")
@@ -36,7 +34,7 @@ public class ShowtimeEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ShowtimeEntity that = (ShowtimeEntity) o;
+        Showtime that = (Showtime) o;
         return id == that.id &&
                 Objects.equals(startTime, that.startTime);
     }
@@ -46,12 +44,5 @@ public class ShowtimeEntity {
         return Objects.hash(id, startTime);
     }
 
-    @OneToMany(mappedBy = "showtimeByShowtimeId")
-    public Collection<MovieHasDateHasShowtimeHasRoomEntity> getMovieHasDateHasShowtimeHasRoomsById() {
-        return movieHasDateHasShowtimeHasRoomsById;
-    }
 
-    public void setMovieHasDateHasShowtimeHasRoomsById(Collection<MovieHasDateHasShowtimeHasRoomEntity> movieHasDateHasShowtimeHasRoomsById) {
-        this.movieHasDateHasShowtimeHasRoomsById = movieHasDateHasShowtimeHasRoomsById;
-    }
 }
