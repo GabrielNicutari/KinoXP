@@ -10,4 +10,9 @@ public class Home {
     public String getHomePage() {
         return "index";
     }
+
+    @GetMapping("/listOfMovies")
+    public String getListOfMovies() {
+        return "movieList";
+    }
 }

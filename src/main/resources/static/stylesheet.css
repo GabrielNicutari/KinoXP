@@ -1,0 +1,110 @@
+/* Imported font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    background-color: #000000;
+    overflow-x: hidden;
+    font-family: 'Sansita Swashed', sans-serif;
+    margin: 0;
+}
+
+.first-text {
+    color: #707070;
+    text-align: center;
+    background-color: white;
+    opacity: 85%;
+    padding: 2em;
+    border-radius: 0.5em;
+    float: left;
+    width: 42%;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+.top-section {
+    padding-top: 4em;
+    background: url("KinoImage.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    padding-bottom: 8em;
+    height: 400px;
+}
+
+header {
+    padding: -1em 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.middle-section {
+    margin: 0 1em;
+}
+
+.top-section p {
+    font-weight: bold;
+    margin: 1em 1em 3em;
+}
+
+.movies-btn {
+    border-radius: 0.5em;
+    background-color: #EF1212;
+    border: none;
+    width: 80%;
+    height: 2rem;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #920000;
+}
+
+img {
+    margin-left: 40px;
+    margin-bottom: 40px;
+    padding: 2em;
+    background: #FFFFFF;
+    width: 42%;
+    float: left;
+    border-radius: 0.5em;
+    object-fit: contain;
+    height: 500px;
+}
+
+.left-part {
+    margin-top: 2rem;
+}
+
+.right-part {
+    margin-right: 40px;
+    margin-bottom: 40px;
+    background-color: #FFFFFF;
+    opacity: 85%;
+    text-align: center;
+    color: #707070;
+    border-radius: 0.5em;
+    padding: 2em;
+    float: right;
+    width: 42%;
+    height: 500px;
+}
+.right-part p {
+    line-height: 2em;
+}
+
+.right-part h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bottom-section {
+    width: 100%;
+    background-color: #201717;
+    color: #867979;
+    display: grid;
+    grid-template-columns: repeat(2, 60%);
+
+}
