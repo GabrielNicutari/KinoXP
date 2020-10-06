@@ -1,14 +1,14 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.sql.Time;
 import java.util.Objects;
 
 @Entity
-@Table(name = "actor", schema = "kinoxpcheetas", catalog = "")
-public class Actor {
+@Table(name = "showtime", schema = "kinoxpcheetas", catalog = "")
+public class Showtime {
     private int id;
-    private String name;
+    private Time startTime;
 
     @Id
     @Column(name = "id")
@@ -21,27 +21,28 @@ public class Actor {
     }
 
     @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "start_time")
+    public Time getStartTime() {
+        return startTime;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Actor that = (Actor) o;
+        Showtime that = (Showtime) o;
         return id == that.id &&
-                Objects.equals(name, that.name);
+                Objects.equals(startTime, that.startTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, startTime);
     }
+
 
 }
