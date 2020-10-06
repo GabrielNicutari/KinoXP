@@ -1,13 +1,13 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "actor", schema = "kinoxpcheetas", catalog = "")
-public class Actor {
+@Table(name = "room", schema = "kinoxpcheetas", catalog = "")
+public class Room {
     private int id;
+    private int seats;
     private String name;
 
     @Id
@@ -18,6 +18,16 @@ public class Actor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "seats")
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     @Basic
@@ -34,14 +44,16 @@ public class Actor {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Actor that = (Actor) o;
+        Room that = (Room) o;
         return id == that.id &&
+                seats == that.seats &&
                 Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, seats, name);
     }
+
 
 }
