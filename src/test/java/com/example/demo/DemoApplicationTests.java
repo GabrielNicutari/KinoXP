@@ -3,8 +3,9 @@ package com.example.demo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.example.demo.controller.Home;
+import com.example.demo.Controller.Home;
 import com.example.demo.model.Actor;
+import com.example.demo.model.Movie;
 import com.example.demo.repository.ActorRepo;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ class SmokeTest {
     @Autowired
     private ActorRepo actorRepo;
     @Autowired
-    private Actor actor;
+    private Movie movie;
 
     @Test
     public void contextLoads() throws Exception {
@@ -49,7 +50,7 @@ class SmokeTest {
     @Test
     public void testActorClass()
     {
-        actor.setActor_id(3);
-    assertEquals(3,actor);
+        movie.setId(3);
+    assertEquals(3,movie);
     }
 }
