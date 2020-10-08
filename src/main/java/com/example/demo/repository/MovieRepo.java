@@ -21,4 +21,9 @@ public class MovieRepo {
         return jdbcTemplate.query(query, rm);
     }
 
+    public Movie findById(int id) {
+        String query = "SELECT m.* FROM movie m WHERE m.id = ?";
+        RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
+        return jdbcTemplate.queryForObject(query, rowMapper, id);
+    }
 }

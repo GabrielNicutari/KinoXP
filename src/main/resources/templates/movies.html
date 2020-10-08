@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
 
     <title>List of Movies</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/movies.css">
-
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/movies.css}">
 </head>
 <body>
 
@@ -44,8 +43,6 @@
         var movies = /*[[${movies}]]*/ [];
     /*]]>*/
     </script>
-
-    <script src="js/movies.js"></script>
-
+<script th:src="@{/js/movies.js}"></script>
 </body>
 </html>

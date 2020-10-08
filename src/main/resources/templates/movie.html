@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>List of Movies</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/movies.css">
-
+    <title>Movie Selected</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/movie.css}" rel="stylesheet" >
 </head>
 <body>
 
@@ -20,7 +19,7 @@
 
     <br>
 
-    <div class="container">
+    <div class="container jumbotron">
         <div id="movie" class="well"></div>
     </div>
 
@@ -30,10 +29,15 @@
        crossorigin="anonymous"
     </script>
 
-    <script src="js/movies.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var movie = /*[[${movie}]]*/ [];
+        /*]]>*/
+    </script>
+
+    <script th:src="@{/js/movies.js}"></script>
     <script>
         getMovie();
     </script>
-
 </body>
 </html>
