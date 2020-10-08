@@ -21,14 +21,11 @@ public class MovieController {
 
         model.addAttribute("movies", movieList);
 
-        // for testing purposes
+//         for testing purposes
 //        for (Movie movie: movieList){
 //            System.out.println(movie);
 //        }
-
-
-        // Needs to return /movies.html, not index
-        return "/index";
+        return "/movies";
     }
 
 }

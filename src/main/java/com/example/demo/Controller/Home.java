@@ -13,6 +13,6 @@ public class Home {
 
     @GetMapping("/listOfMovies")
     public String getListOfMovies() {
-        return "movieList";
+        return "movies";
     }
 }

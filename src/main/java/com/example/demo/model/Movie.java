@@ -16,19 +16,20 @@ public class Movie {
     private int duration;
     private String genre;
     private String description;
+    private String image;
 
     //fields from actor
     private String name;
 
     //fields from room
-    private String type;
-
-    //fields from date
-    private java.sql.Date startDate;
-    private java.sql.Date endDate;
-
-    //fields from showtime
-    private Time startTime;
+//    private String type;
+//
+//    //fields from date
+//    private java.sql.Date startDate;
+//    private java.sql.Date endDate;
+//
+//    //fields from showtime
+//    private Time startTime;
 
     public Movie() {}
 
@@ -41,10 +42,10 @@ public class Movie {
         this.genre = genre;
         this.description = description;
         this.name = name;
-        this.type = type;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
+//        this.type = type;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.startTime = startTime;
     }
 
     public int getId() {
@@ -103,37 +104,45 @@ public class Movie {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getImage() {
+        return image;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public java.sql.Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(java.sql.Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public java.sql.Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
+    //    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
+//
+//    public java.sql.Date getStartDate() {
+//        return startDate;
+//    }
+//
+//    public void setStartDate(java.sql.Date startDate) {
+//        this.startDate = startDate;
+//    }
+//
+//    public java.sql.Date getEndDate() {
+//        return endDate;
+//    }
+//
+//    public void setEndDate(Date endDate) {
+//        this.endDate = endDate;
+//    }
+//
+//    public Time getStartTime() {
+//        return startTime;
+//    }
+//
+//    public void setStartTime(Time startTime) {
+//        this.startTime = startTime;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -163,10 +172,10 @@ public class Movie {
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
                 ", actor='" + name + '\'' +
-                ", room='" + type + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", showtime=" + startTime +
+//                ", room='" + type + '\'' +
+//                ", startDate=" + startDate +
+//                ", endDate=" + endDate +
+//                ", showtime=" + startTime +
                 '}';
     }
 }
