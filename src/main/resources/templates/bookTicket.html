@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>book ticket</title>
+</head>
+<body>
+    <form action="/FillCustomerInfo" method="post">
+        <div>Customer email:</div>
+        <input type="text" name="email" placeholder="example@mail.com">
+        <div>seat number</div>
+        <input type="number" name="seat" >
+        <input hidden name="showtimeId" th:value="${id}"  type="number">
+        <input type="submit" value="Confirm">
+'    </form>
+</body>
+</html>
