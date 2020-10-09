@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import com.example.demo.model.Room;
 import com.example.demo.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,17 +29,6 @@ public class TicketsRepo {
         RowMapper <Ticket> rowMapper = new BeanPropertyRowMapper(Ticket.class);
         return jdbcTemplate.query(query,rowMapper,showtimeId);
     }
-/*
-    public List<Integer> bookedSeats (int showtimeId){ //return all the unavailable seats for a specific showtime
-        List<Ticket> ls = soldTicketsForShowtime(showtimeId);
-        List <Integer> unavailableSeats = new ArrayList<>();
-        for ( Ticket ticket: ls){
-            unavailableSeats.add(ticket.getSeat());
-        }
-        return unavailableSeats;
-    }
-
- */
 
     public List<Ticket> amountOfTicketsForShowtime(int showtimeId){ //by providing a showtime we will get in return the amount of tickets that have been sold for that showtime
         String query = "SELECT COUNT(id) as id FROM ticket "
@@ -63,6 +53,16 @@ public class TicketsRepo {
         return jdbcTemplate.query(query, rm, showtimeId, showtimeId);
 
 
+    }
+
+
+    //This method is part of showtimeRepo!
+    public List<Room> roomSize(int showtimeId){//used for getting amount of seats in the cinema in a specific showtime
+        String query  ="SELECT seats FROM showtime s " +
+                "JOIN room r ON s.room_id = r.id " +
+                "WHERE s.id = ? ";
+        RowMapper<Room> rm = new BeanPropertyRowMapper<>(Room.class);
+        return jdbcTemplate.query(query,rm,showtimeId);
     }
 
 }

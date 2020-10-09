@@ -41,4 +41,21 @@ public class TicketService {
         return ticketsRepo.availableTicketsToShowtime(showtimeId).get(0).getId();
     }
 
+    //need to move to showtimeRepo!!
+    public int roomSize(int showtimeId){
+        return ticketsRepo.roomSize(showtimeId).get(0).getSeats();
+    }
+
+    //need to move showtimeRepo!!
+    public List<Boolean> roomList(int showtimeId){
+        List<Boolean> cinema = new ArrayList<>(roomSize(showtimeId)); //list in the size of the cinema
+        List<Integer> bookedSeats = bookedSeats(showtimeId); // list of booked seats
+        for (int i = 0; i<bookedSeats.size(); i++){
+            cinema.set(bookedSeats.get(i),true);
+        }
+        return cinema;
+    }
+
+
+
 }
