@@ -3,10 +3,14 @@ package com.example.demo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 import com.example.demo.repository.TicketsRepo;
 import com.example.demo.service.TicketService;
+import com.example.demo.Controller.Home;
+import com.example.demo.model.Actor;
+import com.example.demo.model.Movie;
+import com.example.demo.repository.ActorRepo;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,7 +25,7 @@ class DemoApplicationTests {
     @Autowired
     private ActorRepo actorRepo;
     @Autowired
-    private Actor actor;
+    private Movie movie;
 
  */
 
@@ -45,14 +49,7 @@ class DemoApplicationTests {
         assertEquals("Tim Roth", found.getName());
 */
     }
-    @Test
-    public void testActorClass(){
-        /*
-        actor.setActor_id(3);
-    assertEquals(3,actor);
-
-         */
-    }
+  
     @Test
     public void checkTicketSoldCount(){ //those test will not pass when the database will get more populated
         assertEquals(1,ticketService.amountOfTicketsForShowtime(1));
