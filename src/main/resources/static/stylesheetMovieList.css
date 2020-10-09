@@ -1,0 +1,8 @@
+/* Imported font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.table-header {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: bold;
+}

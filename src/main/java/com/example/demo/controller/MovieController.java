@@ -15,7 +15,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/movies")
+    @GetMapping("/listOfMovies")
     public String fetchAll(Model model){
         List<Movie> movieList = movieService.fetchAll();
 
@@ -25,10 +25,8 @@ public class MovieController {
 //        for (Movie movie: movieList){
 //            System.out.println(movie);
 //        }
-
-
         // Needs to return /movies.html, not index
-        return "/index";
+        return "/movies";
     }
 
 }
