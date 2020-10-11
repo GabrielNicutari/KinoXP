@@ -11,6 +11,8 @@ public class Ticket {
     private String email;
     private int seat;
     private int showtimeId;
+    private String title; //use for showing tickets on the website
+    private String dateTime; //use for showing tickets on the website
 
     public Ticket () {
     }
@@ -22,6 +24,18 @@ public class Ticket {
         this.seat = seat;
         this.showtimeId = showtimeId;
     }
+
+    public Ticket (int id, String email, int seat, int showtimeId, String title, String dateTime)
+    {
+        this.id = id;
+        this.email = email;
+        this.seat = seat;
+        this.showtimeId = showtimeId;
+        this.title = title;
+        this.dateTime = dateTime;
+    }
+
+
 
     public int getId ()
     {
@@ -61,6 +75,26 @@ public class Ticket {
     public void setShowtimeId (int showtimeId)
     {
         this.showtimeId = showtimeId;
+    }
+
+    public String getTitle ()
+    {
+        return title;
+    }
+
+    public void setTitle (String title)
+    {
+        this.title = title;
+    }
+
+    public String getDateTime ()
+    {
+        return dateTime;
+    }
+
+    public void setDateTime (String dateTime)
+    {
+        this.dateTime = dateTime;
     }
 
     @Override

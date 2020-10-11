@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.example.demo.repository.TicketsRepo;
 import com.example.demo.service.TicketService;
-import com.example.demo.Controller.Home;
 import com.example.demo.model.Actor;
 import com.example.demo.model.Movie;
 import com.example.demo.repository.ActorRepo;

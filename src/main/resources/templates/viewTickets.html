@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>view tickets</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Seat Number</th>
+        <th>Movie </th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${ticket.id}"/>
+        <td th:text="${ticket.email}"/>
+        <td th:text="${ticket.seat}"/>
+        <td th:text="${ticket.title}"/>
+        <td th:text="${ticket.dateTime}"/>
+        <td><form action="#" th:action="@{'/cancelTicket/'+${ticket.id}}" method="post">
+            <input type="submit" value="Delete Contract">
+        </form></td>
+    </tbody>
+</table>
+
+</body>
+</html>

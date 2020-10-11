@@ -56,6 +56,14 @@ public class TicketService {
         return cinema;
     }
 
+    public List<Ticket> findTicketByEmail(String email){
+        return ticketsRepo.findTicketByEmail(email);
+    }
+
+    public void cancelTicket(int id){
+        ticketsRepo.cancelTicket(id);
+    }
+
 
 
 }
