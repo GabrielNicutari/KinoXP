@@ -46,6 +46,7 @@ function getMovie() {
                 <li class="list-group-item"><strong>Genre:</strong> ${movie.genre}</li>
                 <li class="list-group-item"><strong>Duration:</strong> ${movie.duration}</li>
                 <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
+                <li class="list-group-item"><strong>Actors:</strong> ${movie.actors}</li>
             </ul>
        </div>
     </div>

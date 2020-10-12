@@ -5,13 +5,18 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "actor", schema = "kinoxpcheetas", catalog = "")
 public class Actor {
+    @Id
     private int id;
     private String name;
 
-    @Id
-    @Column(name = "id")
+    public Actor() {}
+
+    public Actor(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -20,8 +25,6 @@ public class Actor {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -44,4 +47,11 @@ public class Actor {
         return Objects.hash(id, name);
     }
 
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

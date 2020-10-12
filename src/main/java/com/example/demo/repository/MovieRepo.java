@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.Actor;
 import com.example.demo.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -40,5 +41,11 @@ public class MovieRepo {
     public Boolean delete(int id) {
         String query = "DELETE FROM movie WHERE id = ?";
         return template.update(query, id) < 0;
+    }
+
+    public List<Actor> fetchActorsByMovieId(int movieId) {
+        String query = "SELECT a.id, name FROM actor a, movie_has_actor mha WHERE mha.actor_id = a.id AND mha.movie_id = " + movieId;
+        RowMapper<Actor> rm = new BeanPropertyRowMapper<>(Actor.class);
+        return template.query(query, rm);
     }
 }

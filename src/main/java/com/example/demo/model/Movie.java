@@ -19,7 +19,7 @@ public class Movie {
     private String image;
 
     //fields from actor
-    private String name;
+    private String actors; //there's a list inside
 
     //fields from room
 //    private String type;
@@ -41,7 +41,7 @@ public class Movie {
         this.duration = duration;
         this.genre = genre;
         this.description = description;
-        this.name = name;
+        this.actors = actors;
 //        this.type = type;
 //        this.startDate = startDate;
 //        this.endDate = endDate;
@@ -96,12 +96,12 @@ public class Movie {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getActors() {
+        return actors;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActors(String actors) {
+        this.actors = actors;
     }
 
     public String getImage() {
@@ -171,7 +171,7 @@ public class Movie {
                 ", duration=" + duration +
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
-                ", actor='" + name + '\'' +
+                ", actor='" + actors + '\'' +
 //                ", room='" + type + '\'' +
 //                ", startDate=" + startDate +
 //                ", endDate=" + endDate +
