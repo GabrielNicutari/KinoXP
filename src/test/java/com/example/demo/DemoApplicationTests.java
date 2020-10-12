@@ -49,7 +49,7 @@ class SmokeTest {
     @Test
     public void testActorClass()
     {
-        actor.setActor_id(3);
+        actor.setId(3);
     assertEquals(3,actor);
     }
 }
