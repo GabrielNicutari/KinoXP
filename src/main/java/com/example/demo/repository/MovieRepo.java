@@ -31,4 +31,14 @@ public class MovieRepo {
                 "VALUES (?, ?, ?, ?, ?, ?)";
         template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage());
     }
+
+    public void update(Movie m, int id) {
+        String query = "UPDATE movie SET title = ?, age_requirement = ?, duration = ?, genre = ?, description = ?, image = ? WHERE id= ?";
+        template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage(), id);
+    }
+
+    public Boolean delete(int id) {
+        String query = "DELETE FROM movie WHERE id = ?";
+        return template.update(query, id) < 0;
+    }
 }

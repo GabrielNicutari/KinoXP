@@ -23,4 +23,12 @@ public class MovieService {
     public void add(Movie m) {
         movieRepo.add(m);
     }
+
+    public void update(Movie movie, int id) {
+        movieRepo.update(movie, id);
+    }
+
+    public boolean delete(int id) {
+        return movieRepo.delete(id);
+    }
 }

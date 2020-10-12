@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    getMovies("w/e");
+    getMovies();
 
     // $('#searchForm').on('submit', (e) => {
     //     let searchText = $('#searchText').val();
@@ -17,7 +17,7 @@ function getMovies() {
                <div class="well text-center jumbotron">
                    <img src="${movie.image}">
                    <h5> ${movie.title}</h5>
-                    <a onclick="movieSelected('${movie.id}')" href="/getOne/${movie.id}" class="btn btn-primary">Movie Details</a>
+                    <a onclick="movieSelected('${movie.id}')" href="/movies/getOne/${movie.id}" class="btn btn-primary">Movie Details</a>
                </div>
             </div>
           `;
@@ -54,10 +54,11 @@ function getMovie() {
             <h3 >Description</h3>
             ${movie.description}
             <hr>
-            <a href=""
+            <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
+            <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
             <a href="/movies" class="btn btn-secondary">Go Back</a>
         </div>
-    </div>`
+    </div>`;
 
     $('#movie').html(output);
 }
