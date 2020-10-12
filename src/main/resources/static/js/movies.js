@@ -54,6 +54,7 @@ function getMovie() {
             <h3 >Description</h3>
             ${movie.description}
             <hr>
+            <a href=""
             <a href="/movies" class="btn btn-secondary">Go Back</a>
         </div>
     </div>`

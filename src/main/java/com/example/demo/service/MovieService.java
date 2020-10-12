@@ -19,4 +19,8 @@ public class MovieService {
     public Movie getOne(int id) {
         return movieRepo.findById(id);
     }
+
+    public void add(Movie m) {
+        movieRepo.add(m);
+    }
 }

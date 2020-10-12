@@ -5,10 +5,7 @@ import com.example.demo.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,25 +20,18 @@ public class MovieController {
         List<Movie> movieList = movieService.fetchAll();
 
         model.addAttribute("movies", movieList);
-
-//         for testing purposes
-//        for (Movie movie: movieList){
-//            System.out.println(movie);
-//        }
         return "/movies";
     }
 
-//    @RequestMapping("/movies/getOne")
-//    @ResponseBody
     @GetMapping("/getOne/{id}")
     public String getOne(@PathVariable("id") int id, Model model) {
         model.addAttribute(movieService.getOne(id));
         return "/movie";
     }
 
-    @GetMapping("/movie")
-    public String wtf(){
-        return "/movie";
+    @PostMapping(value="/movies/add")
+    public String add(@ModelAttribute Movie m) {
+        movieService.add(m);
+        return "redirect:/movies";
     }
-
 }

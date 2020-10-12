@@ -2,10 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>List of Movies</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/movies.css}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -22,7 +26,10 @@
     <div class="container">
         <div class="jumbotron">
             <h3 class="text-center">Search For Any Movie</h3>
-            <form id="searchForm">
+            <form id="searchForm" class="input-group">
+                <a th:action="@{/movies/add}" method="post">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" ><span class="add-txt">Add Movie</span></button>
+                </a>
                 <input type="text" class="form-control" id="searchText" placeholder="Search Movies...">
             </form>
         </div>
@@ -30,6 +37,61 @@
 
     <div class="container">
         <div id="movies" class="row"></div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form th:action="@{/movies/add}" method="post">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Movie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group" >
+                            <label for="recipient-title" class="col-form-label" >Title:</label>
+                            <input type="text" pattern="[^;]+" oninvalid="this.setCustomValidity('Please fill out this field. The following characters are not allowed: \' ; \' ')"
+                                   oninput="this.setCustomValidity('')" class="form-control" id="recipient-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-ageRequirement" class="col-form-label">Age Requirement:</label>
+                            <input type="number" class="form-control" id="recipient-ageRequirement" name="ageRequirement" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-duration" class="col-form-label">Duration:</label>
+                            <input type="number" class="form-control" id="recipient-duration" name="duration" required>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="recipient-genre" class="col-form-label" >Genre:</label>
+                            <input type="text" pattern="[^;]+" oninvalid="this.setCustomValidity('Please fill out this field. The following characters are not allowed: \' ; \' ')"
+                                   oninput="this.setCustomValidity('')" class="form-control" id="recipient-genre" name="genre" required>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="recipient-description" class="col-form-label" >Description:</label>
+                            <input type="text" pattern="[^;]+" oninvalid="this.setCustomValidity('Please fill out this field. The following characters are not allowed: \' ; \' ')"
+                                   oninput="this.setCustomValidity('')" class="form-control" id="recipient-description" name="description" required>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="recipient-image" class="col-form-label" >Poster URL:</label>
+                            <input type="url" class="form-control" id="recipient-image" name="image" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <script
