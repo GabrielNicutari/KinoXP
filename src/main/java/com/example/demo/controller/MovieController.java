@@ -26,15 +26,16 @@ public class MovieController {
 
     @GetMapping("/movies/getOne/{id}")
     public String getOne(@PathVariable("id") int id, Model model) {
+        Movie m = movieService.getOne(id);
+
         //Fetch actors for this specific movie as well
         List<Actor> actorList = movieService.fetchActorsByMovieId(id);
-
-        Movie m = movieService.getOne(id);
         String actors = actorList.get(0).getName();
+
         for (int i = 1; i < actorList.size(); i++) {
             actors += ", " + actorList.get(i).getName();
         }
-        System.out.println(actors);
+
         m.setActors(actors);
         model.addAttribute(m);
 
