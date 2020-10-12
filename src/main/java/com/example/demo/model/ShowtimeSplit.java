@@ -1,30 +1,32 @@
 package com.example.demo.model;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.time.*;
+import java.time.LocalTime;
 
 @Entity
-public class Showtime {
+public class ShowtimeSplit {
     @Id
     private int id;
 
     private int movieId;
     private int roomId;
-    private LocalDateTime dateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+    private LocalTime time;
 
-    public Showtime() {
+    public ShowtimeSplit() {
     }
-    public Showtime(int id, int movieId, int roomId, LocalDateTime dateTime, int timeTableId) {
+    public ShowtimeSplit(int id, int movieId, int roomId, LocalDate date, LocalTime time) {
         this.id = id;
         this.movieId = movieId;
         this.roomId = roomId;
-        this.dateTime = dateTime;
+        this.date = date;
+        this.time = time;
     }
 
     public int getId() {
@@ -51,12 +53,19 @@ public class Showtime {
         this.roomId = roomId;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 }
