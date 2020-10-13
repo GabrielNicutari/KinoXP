@@ -11,6 +11,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,10 @@ public class ShowtimeService {
         return week;
     }
 
+    public List<Showtime> fetchShowtimesWithDateAndMovieId (LocalDate date, int movieId){
+        return showtimeRepo.fetchShowtimesWithDateAndMovieId(date, movieId);
+    }
+
     public boolean addShowtime(Showtime showtime){
         return showtimeRepo.addShowtime(showtime);
     }
@@ -88,5 +93,14 @@ public class ShowtimeService {
             t = t.plusMinutes(intervalMinutes);
         }
         return showtimes;
+    }
+    public boolean isDate (String date) {
+        boolean dates = true;
+        try{
+            LocalDate sd = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            dates = false;
+        }
+        return dates;
     }
 }

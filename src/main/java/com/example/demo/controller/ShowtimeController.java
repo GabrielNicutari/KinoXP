@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -24,9 +26,11 @@ public class ShowtimeController {
     * Takes two parameters, one is required: movieId, the other is optional and is used to delete or create new showtimes for the movie
     * Method as is, gets all showtimes with the movieId from todays date and for the week.
     * */
-    @RequestMapping(value = {"/showtime/{movieId}", "/showtime/{movieId}/{adminEdit}"})
+    // Add to paths - showtime/movieid/week... - showtime/movieId/dateSelected (Both with editable - adminEdit extension)
+    @RequestMapping(value = {"/showtime/{movieId}", "/showtime/{movieId}/{adminEdit}", "/showtime/{movieId}/dateSelected"})
     public String showtimeMovieId (@PathVariable("movieId") int movieId,
                                    @PathVariable("adminEdit") Optional<String> adminEdit,
+                                   @PathVariable("dateSelected") Optional<String> dateSelected,
                                    Model model){
         ArrayList<ArrayList<Showtime>> week = showtimeService.fetchAllInWeekWithMovieId(movieId);
         if(adminEdit.isPresent()){
@@ -38,6 +42,17 @@ public class ShowtimeController {
                 model.addAttribute("edit", false);
                 model.addAttribute("create", false);
             }
+        }
+        if(dateSelected.isPresent()){
+            // Code for dateSelected.
+            String d = dateSelected.get();
+            if(showtimeService.isDate(d)){
+                LocalDate ld = LocalDate.parse(d);
+                showtimeService.fetchShowtimesWithDateAndMovieId(ld, movieId);
+                model.addAttribute("day1", showtimeService.fetchShowtimesWithDateAndMovieId(ld, movieId));
+            }
+        } else {
+            //model.addAttribute()
         }
         model.addAttribute("day1", week.get(0));
         model.addAttribute("day2", week.get(1));
