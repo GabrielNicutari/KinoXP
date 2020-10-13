@@ -38,6 +38,7 @@ public class TicketController {
         return "viewTickets";
 
     }
+
     @PostMapping("/cancelTicket/{id}")
     public String cancelContract(@PathVariable("id") int id){
         ticketService.cancelTicket(id);

@@ -54,7 +54,7 @@ public class TicketsRepo {
     }
 
     public List<Ticket> findTicketByEmail(String email){
-        String query = "SELECT * FROM ticket t " +
+        String query = "SELECT t.id, t.email,t.seat,m.title,s.date_time FROM ticket t " +
                 "JOIN showtime s ON t.showtime_id = s.id " +
                 "JOIN movie m ON s.movie_id = m.id " +
                 "WHERE email LIKE ?";
