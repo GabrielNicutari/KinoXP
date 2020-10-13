@@ -3,17 +3,46 @@
 }
 
 @media(min-width:960px){
-    #movies .col-md-3 .well{
+    #movie .col-md-3 .well{
         height: 390px;
         padding-top: 30px;
     }
 
-    #movies .col-md-3 img{
+    #movie .col-md-3 img{
         height:250px;
     }
 
-    #movies h5{
+    #movie h5{
         padding-top: 5px;
     }
 }
+.jumbotron {
+    background-image:
+            url('Shaw.jpg') !important;
+            min-height: 1080px;
+            object-fit: contain;
+            z-index: -2;
+            width: 100%;
+            position: absolute;
+
+}
+
+.container-fluid {
+            linear-gradient(to right, black 40%, rgba(0, 0,0,0));
+            url('Show.jpg') !important;
+            width: 100%;
+            z-index: 2;
+            position: absolute;
+            background-color: red;
+}
+
+.h5 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 2.5em;
+    letter-spacing: 0.1em;
+    color: #fff;
+}
+
+
 

@@ -37,23 +37,20 @@ function getMovie() {
 
     let output =`
     <div class="row">
-       <div class="col-md-4">
-           <img src="${movie.image}" class="img-thumbnail">
-       </div>
        <div class="col-md-8">
             <h2>${movie.title}</h2>
-            <ul class="list-group">
-                <li class="list-group-item"><strong>Genre:</strong> ${movie.genre}</li>
-                <li class="list-group-item"><strong>Duration:</strong> ${movie.duration}</li>
-                <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
-            </ul>
+             <h3 >Description</h3>
+            ${movie.description}
+            <hr>
        </div>
     </div>
     <div class="row">
         <div class="well">
-            <h3 >Description</h3>
-            ${movie.description}
-            <hr>
+             <ul class="list-group">
+                <li class="list-group-item"><strong>Genre:</strong> ${movie.genre}</li>
+                <li class="list-group-item"><strong>Duration:</strong> ${movie.duration}</li>
+                <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
+            </ul>
             <a href="/movies" class="btn btn-secondary">Go Back</a>
         </div>
     </div>`
