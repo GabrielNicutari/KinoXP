@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Actor;
 import com.example.demo.model.Movie;
 import com.example.demo.repository.MovieRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,4 +17,23 @@ public class MovieService {
         return movieRepo.fetchAll();
     }
 
+    public Movie getOne(int id) {
+        return movieRepo.findById(id);
+    }
+
+    public void add(Movie m) {
+        movieRepo.add(m);
+    }
+
+    public void update(Movie movie, int id) {
+        movieRepo.update(movie, id);
+    }
+
+    public boolean delete(int id) {
+        return movieRepo.delete(id);
+    }
+
+    public List<Actor> fetchActorsByMovieId(int movieId) {
+        return movieRepo.fetchActorsByMovieId(movieId);
+    }
 }

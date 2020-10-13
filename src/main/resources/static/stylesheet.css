@@ -21,6 +21,19 @@ body {
     margin-bottom: 40px;
 }
 
+.movie-text {
+    color: red;
+    text-align: center;
+    background-color: white;
+    opacity: 85%;
+    padding: 2em;
+    border-radius: 0.5em;
+    float: left;
+    width: 42%;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
 .top-section {
     padding-top: 4em;
     background: url("images/KinoImage.jpg");
