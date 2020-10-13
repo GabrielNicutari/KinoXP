@@ -30,13 +30,16 @@ public class MovieController {
 
         //Fetch actors for this specific movie as well
         List<Actor> actorList = movieService.fetchActorsByMovieId(id);
-        String actors = actorList.get(0).getName();
+        if(!actorList.isEmpty()) {
+            String actors = actorList.get(0).getName();
 
-        for (int i = 1; i < actorList.size(); i++) {
-            actors += ", " + actorList.get(i).getName();
+            for (int i = 1; i < actorList.size(); i++) {
+                actors += ", " + actorList.get(i).getName();
+            }
+
+            m.setActors(actors);
         }
 
-        m.setActors(actors);
         model.addAttribute(m);
 
         return "/movie";
