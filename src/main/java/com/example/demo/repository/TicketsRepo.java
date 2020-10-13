@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -52,7 +51,20 @@ public class TicketsRepo {
         RowMapper<Ticket> rm = new BeanPropertyRowMapper<>(Ticket.class);
         return jdbcTemplate.query(query, rm, showtimeId, showtimeId);
 
+    }
 
+    public List<Ticket> findTicketByEmail(String email){
+        String query = "SELECT t.id, t.email,t.seat,m.title,s.date_time FROM ticket t " +
+                "JOIN showtime s ON t.showtime_id = s.id " +
+                "JOIN movie m ON s.movie_id = m.id " +
+                "WHERE email LIKE ?";
+        RowMapper <Ticket> rm = new BeanPropertyRowMapper<>(Ticket.class);
+        return jdbcTemplate.query(query,rm,email);
+    }
+
+    public void cancelTicket(int id){
+        String query = "DELETE FROM ticket WHERE id = ?";
+        jdbcTemplate.update(query,id);
     }
 
 
