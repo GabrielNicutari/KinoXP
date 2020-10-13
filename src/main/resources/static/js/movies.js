@@ -37,9 +37,6 @@ function getMovie() {
 
     let output =`
     <div class="row">
-       <div class="col-md-4">
-           <img src="${movie.image}" class="img-thumbnail">
-       </div>
        <div class="col-md-8">
             <h2>${movie.title}</h2>
             <ul class="list-group">
