@@ -16,7 +16,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/listOfMovies")
+    @GetMapping("/movies")
     public String fetchAll(Model model){
         List<Movie> movieList = movieService.fetchAll();
 
