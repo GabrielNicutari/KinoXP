@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Seat;
 import com.example.demo.model.Ticket;
 import com.example.demo.repository.TicketsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +48,37 @@ public class TicketService {
     }
 
     //need to move showtimeRepo!!
-    public List<Boolean> roomList(int showtimeId){
-        List<Boolean> cinema = new ArrayList<>(roomSize(showtimeId)); //list in the size of the cinema
-        List<Integer> bookedSeats = bookedSeats(showtimeId); // list of booked seats
-        for (int i = 0; i<bookedSeats.size(); i++){
-            cinema.set(bookedSeats.get(i),true);
+    public Seat[][] roomList(int showtimeId){
+        int size = roomSize(showtimeId);
+        int row;
+        int column;
+        if (size == 240){
+            row = 20;
+            column  = 12;
         }
-        return cinema;
+        else{
+            row = 25;
+            column = 16;
+        }
+        Seat[][] seats = new Seat[row][column];
+        List<Integer> bookedSeats = bookedSeats(showtimeId); // list of booked seats
+        System.out.println(bookedSeats);
+        System.out.println();
+        for(int bookedSeat : bookedSeats ){
+            System.out.println("row:" + bookedSeat/column+ " column:" + bookedSeat%column);
+            seats[bookedSeat/column][bookedSeat%column] = new Seat(" taken",0);
+        }
+        int count = 0;
+        for (int  i = 0; i < seats.length ;i ++){
+            for (int j = 0 ; j<seats[i].length ; j ++){
+                if(seats[i][j]==null) {
+                    seats[i][j] = new Seat(" ", 0);
+                }
+                seats[i][j].setNumber(count);
+                count++;
+            }
+        }
+        return seats;
     }
 
     public List<Ticket> findTicketByEmail(String email){
