@@ -109,6 +109,7 @@ public class ShowtimeController {
             model.addAttribute("day6", week.get(5));
             model.addAttribute("day7", week.get(6));
         }
+        System.out.println("Testing a push, seeing if local branch becomes remote. ");
         return "showtime";
     }
 
