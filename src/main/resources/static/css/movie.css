@@ -2,8 +2,8 @@
     width:100%;
 }
 
-@media(min-width:960px){
-    #movie .col-md-3 .well{
+@media(min-width:960px) {
+    #movie .col-md-3 .well {
         height: 390px;
         padding-top: 30px;
     }
@@ -15,25 +15,67 @@
     #movie h5{
         padding-top: 5px;
     }
+
+    #movie h2 {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 2.5em;
+        letter-spacing: 0.1em;
+        color: #ffffff;
+        padding-bottom: 0.5em;
+    }
+
+    #movie .row {
+        padding-left: 1em;
+        width: 70% !important;
+    }
+
+    #movie .col-md-8 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2em;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        line-height: 1.5em;
+        color: #ffffff;
+        margin: 15px 0 35px;
+        padding: 0em 0;
+    }
+
+    #movie .list-group {
+        background-color: red !important;
+        color: red !important;
+    }
 }
+
 .jumbotron {
-    background-image:
-            url('Shaw.jpg') !important;
+    background-image: url('Show.jpg') !important;
             min-height: 1080px;
-            object-fit: contain;
-            z-index: -2;
+            max-height: 1080px;
             width: 100%;
+            display: block;
             position: absolute;
-
+            background-repeat: no-repeat;
+            top: 10px;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-size: 50% 100%;
+            background-position: right;
 }
 
-.container-fluid {
-            linear-gradient(to right, black 40%, rgba(0, 0,0,0));
-            url('Show.jpg') !important;
-            width: 100%;
-            z-index: 2;
-            position: absolute;
-            background-color: red;
+.jumbotron::before {
+    content: '';
+    background: linear-gradient(to right, black 50%, rgba(0, 0,0,0) 70%);
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 1080px;
+    max-height: 1080px;
 }
 
 .h5 {
