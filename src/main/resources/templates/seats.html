@@ -24,7 +24,7 @@
         <tr th:each ="row : ${seats}">
             <div class="row">
                 <td th:each = "seat : ${row}">
-                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" th:text="${seat.number}" onclick="getId(this)" >
+                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
                     </div>
                 </td>
             </div>
@@ -36,9 +36,9 @@
 
         </p>
         <form action="/bookSeats" method="post">
-            <input id="seatsToBook" type="text" name="description" value="" >
-            <input type="email" name="title" placeholder="example@mail.com">
-            <input type="number" name="id" th:value="${showtimeId}" >
+            <input id="seatsToBook" type="text" name="description" value="" hidden>
+            <input type="email" name="title" placeholder="example@mail.com" required>
+            <input type="number" name="id" th:value="${showtimeId}" hidden>
             <input type="submit" value="confirm">
             <button id="refresh" onclick="reload()">cancel seat selection</button>
         </form>
