@@ -62,17 +62,15 @@ public class TicketService {
         }
         Seat[][] seats = new Seat[row][column];
         List<Integer> bookedSeats = bookedSeats(showtimeId); // list of booked seats
-        System.out.println(bookedSeats);
-        System.out.println();
-        for(int bookedSeat : bookedSeats ){
-            System.out.println("row:" + bookedSeat/column+ " column:" + bookedSeat%column);
+
+        for(int bookedSeat : bookedSeats ){ //mark occupied seats in the matrix
             seats[bookedSeat/column][bookedSeat%column] = new Seat(" taken",0);
         }
         int count = 0;
         for (int  i = 0; i < seats.length ;i ++){
             for (int j = 0 ; j<seats[i].length ; j ++){
                 if(seats[i][j]==null) {
-                    seats[i][j] = new Seat(" ", 0);
+                    seats[i][j] = new Seat(" ", 0); //sign up seats object into the matrix with seat number
                 }
                 seats[i][j].setNumber(count);
                 count++;
