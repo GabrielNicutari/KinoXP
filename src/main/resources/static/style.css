@@ -51,6 +51,13 @@ span {
     background-color: #19929D;
 }
 
+
+.seat.true{
+    background-color: #707070;
+}
+
+
+
 .seat.taken {
     background-color: #707070;
 }

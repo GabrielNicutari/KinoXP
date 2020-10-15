@@ -2,11 +2,60 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet"  th:href="@{/style.css}"/>
     <title>seatsSmall</title>
 </head>
 <body>
-    <tr th:each ="seat : ${seats}}">
-        <td th:text ="seat"></td>
-    </tr>
+    <ul class="legend">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat taken"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+    <div class="container">
+        <tr th:each ="row : ${seats}">
+            <div class="row">
+                <td th:each = "seat : ${row}">
+                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
+                    </div>
+                </td>
+            </div>
+        </tr>
+
+        <div class="screen"></div>
+        <p class="notification">
+            You have selected <input id="count" type="text" value="0" disabled/> seats.
+
+        </p>
+        <form action="/bookSeats" method="post">
+            <input id="seatsToBook" type="text" name="description" value="" hidden>
+            <input type="email" name="title" placeholder="example@mail.com" required>
+            <input type="number" name="id" th:value="${showtimeId}" hidden>
+            <input type="submit" value="confirm">
+            <button id="refresh" onclick="reload()">cancel seat selection</button>
+        </form>
+        <script src="script.js" type="text/javascript" ></script>
+
+    </div>
 </body>
+<script>
+    function getId(e) {
+        if (e.className === "seat " && e.style.backgroundColor !== "#19929D") {
+            e.className += "selected"
+            document.getElementById("count").value++;
+            document.getElementById("seatsToBook").value+=e.id + " ";
+        }
+    }
+    function reload(){
+        location.reload();
+    }
+</script>
 </html>
