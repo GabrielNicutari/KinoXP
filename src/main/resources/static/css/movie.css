@@ -3,18 +3,6 @@
 }
 
 @media(min-width:960px) {
-    #movie .col-md-3 .well {
-        height: 390px;
-        padding-top: 30px;
-    }
-
-    #movie .col-md-3 img{
-        height:250px;
-    }
-
-    #movie h5{
-        padding-top: 5px;
-    }
 
     #movie h2 {
         text-transform: uppercase;
@@ -27,23 +15,39 @@
 
     #movie .row {
         padding-left: 1em;
-        width: 70% !important;
+        width: 50% !important;
     }
 
-    #movie .col-md-8 {
+    #movie .well {
         font-family: 'Poppins', sans-serif;
         font-size: 1.2em;
         font-weight: 300;
         letter-spacing: 0.02em;
         line-height: 1.5em;
         color: #ffffff;
-        margin: 15px 0 35px;
-        padding: 0em 0;
+        margin: 15px 0 0px;
     }
 
     #movie .list-group {
-        background-color: red !important;
-        color: red !important;
+        color: white !important;
+        padding-bottom: 5em;
+        width: 100%;
+        padding-left: -2em;
+        margin: 0;
+    }
+
+    #movie .btn-secondary {
+        background-color: transparent !important;
+        color: white !important;
+        font-size: 16px;
+        border-radius: 50%;
+        border: white 1px solid;
+        margin-bottom: 1em;
+    }
+
+    #movie .col-md-8 {
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -62,6 +66,7 @@
             height: 100%;
             background-size: 50% 100%;
             background-position: right;
+            z-index: -1;
 }
 
 .jumbotron::before {
@@ -76,14 +81,7 @@
     right: 0;
     min-height: 1080px;
     max-height: 1080px;
-}
-
-.h5 {
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 2.5em;
-    letter-spacing: 0.1em;
-    color: #fff;
+    z-index: -1;
 }
 
 

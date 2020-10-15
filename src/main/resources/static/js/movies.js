@@ -37,25 +37,24 @@ function getMovie() {
 
     let output =`
     <div class="row">
-       <div class="col-md-8">
+        <div class="well">
+            <a href="/movies" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
             <h2>${movie.title}</h2>
+            ${movie.description}
+            <hr>
+        </div>
+    </div>
+   <div class="row">
+       <div class="col-md-8">
             <ul class="list-group">
                 <li class="list-group-item"><strong>Genre:</strong> ${movie.genre}</li>
                 <li class="list-group-item"><strong>Duration:</strong> ${movie.duration}</li>
                 <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
                 <li class="list-group-item"><strong>Actors:</strong> ${movie.actors}</li>
             </ul>
-       </div>
-    </div>
-    <div class="row">
-        <div class="well">
-            <h3 >Description</h3>
-            ${movie.description}
-            <hr>
             <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
             <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
-            <a href="/movies" class="btn btn-secondary">Go Back</a>
-        </div>
+       </div>
     </div>`;
 
     $('#movie').html(output);
