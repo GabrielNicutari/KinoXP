@@ -57,5 +57,8 @@ function getMovie() {
        </div>
     </div>`;
 
+    let jumbotron = document.getElementsByClassName("jumbotron")[0];
+    jumbotron.style.backgroundImage = "url("+ movie.cover +")";
+
     $('#movie').html(output);
 }
