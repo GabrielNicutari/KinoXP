@@ -17,6 +17,13 @@ public class Ticket {
     public Ticket () {
     }
 
+    public Ticket (String email, int seat, int showtimeId)
+    {
+        this.email = email;
+        this.seat = seat;
+        this.showtimeId = showtimeId;
+    }
+
     public Ticket (int id, String email, int seat, int showtimeId)
     {
         this.id = id;

@@ -24,22 +24,38 @@
         <tr th:each ="row : ${seats}">
             <div class="row">
                 <td th:each = "seat : ${row}">
-                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" th:text="${seat.number}" onclick="getId(this.id);">
+                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" th:text="${seat.number}" onclick="getId(this)" >
                     </div>
                 </td>
             </div>
         </tr>
 
         <div class="screen"></div>
-
         <p class="notification">
-            You have selected <span id="count">0</span> seats.
-        </p>
+            You have selected <input id="count" type="text" value="0" disabled/> seats.
 
-        <script src="script.js" type="text/javascript"></script>
+        </p>
+        <form action="/bookSeats" method="post">
+            <input id="seatsToBook" type="text" name="description" value="" >
+            <input type="email" name="title" placeholder="example@mail.com">
+            <input type="number" name="id" th:value="${showtimeId}" >
+            <input type="submit" value="confirm">
+            <button id="refresh" onclick="reload()">cancel seat selection</button>
+        </form>
+        <script src="script.js" type="text/javascript" ></script>
 
     </div>
 </body>
 <script>
+    function getId(e) {
+        if (e.className === "seat " && e.style.backgroundColor !== "#19929D") {
+            e.className += "selected"
+            document.getElementById("count").value++;
+            document.getElementById("seatsToBook").value+=e.id + " ";
+        }
+    }
+    function reload(){
+        location.reload();
+    }
 </script>
 </html>
