@@ -2,12 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Actor;
 import com.example.demo.model.Movie;
+import com.example.demo.model.Showtime;
 import com.example.demo.service.MovieService;
+import com.example.demo.service.ShowtimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,6 +19,9 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private ShowtimeService showtimeService;
 
     @GetMapping("/movies")
     public String fetchAll(Model model){
@@ -27,6 +34,8 @@ public class MovieController {
     @GetMapping("/movies/getOne/{id}")
     public String getOne(@PathVariable("id") int id, Model model) {
         Movie m = movieService.getOne(id);
+        LocalDate date = LocalDate.parse("2020-10-17");
+        List<Showtime> showtimes = showtimeService.fetchShowtimesWithDateAndMovieId(date, id);
 
         //Fetch actors for this specific movie as well
         List<Actor> actorList = movieService.fetchActorsByMovieId(id);
@@ -41,6 +50,7 @@ public class MovieController {
         }
 
         model.addAttribute(m);
+        model.addAttribute("showtimes", showtimes);
 
         return "/movie";
     }

@@ -52,8 +52,14 @@ function getMovie() {
                 <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
                 <li class="list-group-item"><strong>Actors:</strong> ${movie.actors}</li>
             </ul>
+            
             <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
             <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
+            <div class="form-group">
+                    <select id="showtime-select" onload="fetchShowtimes()">
+                    <option selected="">Pick a Date</option>
+                </select>
+            </div>
        </div>
     </div>`;
 
@@ -61,4 +67,14 @@ function getMovie() {
     jumbotron.style.backgroundImage = "url("+ movie.cover +")";
 
     $('#movie').html(output);
+}
+
+function fetchShowtimes() {
+    $.each(showtimes, (index, showtime) => {
+        console.log(showtime.dateTime);
+        var select = document.getElementById("showtime-select");
+        var option = document.createElement("option");
+        option.text = showtime.dateTime;
+        select.add(option);
+    });
 }
