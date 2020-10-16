@@ -51,14 +51,18 @@
     }
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .jumbotron {
-    padding-top: 2em;
+    padding-top: 1em;
     /*background-image: url("")!important;*/
             width: 100%;
             display: block;
             position: absolute;
             background-repeat: no-repeat;
-            top: 10px;
+            top: -3px;
             bottom: 10px;
             left: 0;
             right: 0;
