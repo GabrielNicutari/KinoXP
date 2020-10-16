@@ -63,7 +63,7 @@ body {
             position: absolute;
             background-repeat: no-repeat;
             top: -3px;
-            bottom: 10px;
+            bottom: 0;
             left: 0;
             right: 0;
             height: 100%;
@@ -71,6 +71,8 @@ body {
             background-position: right;
             background-color: #060601;
             z-index: -1;
+            padding-bottom: 0;
+            margin: 0;
 }
 
 .jumbotron::before {
@@ -79,12 +81,13 @@ body {
     width: 100%;
     display: block;
     position: absolute;
-    top: -10%;
-    bottom: -10%;
+    top: 0;
+    bottom: 0;
     left: -2%;
     right: 0;
     transform: skew(18deg, 0deg);
     z-index: -1;
+    height: 100%;
 }
 
 
