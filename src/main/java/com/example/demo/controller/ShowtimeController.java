@@ -71,7 +71,7 @@ public class ShowtimeController {
         }
         return "showtime";
     }
-     */
+    */
     @GetMapping(value = {"/showtime/{movieId}", "/showtime/{movieId}/{adminEdit}"})
     public String showtimeMovieId (@PathVariable("movieId") int movieId,
                                    @PathVariable("adminEdit") Optional<String> adminEdit,
@@ -109,7 +109,6 @@ public class ShowtimeController {
             model.addAttribute("day6", week.get(5));
             model.addAttribute("day7", week.get(6));
         }
-        System.out.println("Testing a push, seeing if local branch becomes remote. ");
         return "showtime";
     }
 

@@ -23,6 +23,7 @@ public class ShowtimeService {
     // Fetches all showtimes within the next 7 days and has the correct movieId. ArrayList per day for thymeleaf.
     public ArrayList<ArrayList<Showtime>> fetchAllInWeekWithMovieId (int movieId){
         List<Showtime> unformatted = showtimeRepo.fetchAllInWeekWithMovieId(movieId);
+
         ArrayList<Showtime> day1 = new ArrayList<>();
         ArrayList<Showtime> day2 = new ArrayList<>();
         ArrayList<Showtime> day3 = new ArrayList<>();
