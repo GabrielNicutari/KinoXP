@@ -10,6 +10,15 @@ public class Room {
     private int seats;
     private String name;
 
+    public Room() {
+    }
+
+    public Room(int id, int seats, String name) {
+        this.id = id;
+        this.seats = seats;
+        this.name = name;
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {

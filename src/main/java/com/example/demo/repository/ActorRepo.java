@@ -18,12 +18,11 @@ public class ActorRepo {
         String query = "SELECT * FROM actor;";
         RowMapper<Actor> rm = new BeanPropertyRowMapper<>(Actor.class);
         List<Actor> ls = jdbcTemplate.query(query,rm);
-        System.out.println(rm);
         return ls;
     }
     public Actor findByName(String name)
     {
-        String query = "SELECT * FROM actor WHERE name LIKE `?`;";
+        String query = "SELECT * FROM actor WHERE name= ?;";
         RowMapper<Actor> rm = new BeanPropertyRowMapper<>(Actor.class);
         return jdbcTemplate.queryForObject(query,rm,name);
     }
