@@ -2,20 +2,92 @@
     width:100%;
 }
 
-@media(min-width:960px){
-    #movies .col-md-3 .well{
-        height: 390px;
-        padding-top: 30px;
+@media(min-width:960px) {
+
+    #movie h2 {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 2.5em;
+        letter-spacing: 0.1em;
+        color: #ffffff;
+        padding-bottom: 0.5em;
     }
 
-    #movies .col-md-3 img{
-        height:250px;
+    #movie .row {
+        padding-left: 1em;
+        width: 40% !important;
     }
 
-    #movies h5{
-        padding-top: 5px;
+    #movie .well {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2em;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        line-height: 1.5em;
+        color: #ffffff;
+        margin: 15px 0 0px;
+    }
+
+    #movie .list-group {
+        color: white !important;
+        padding-bottom: 5em;
+        width: 100%;
+        padding-left: -2em;
+        margin: 0;
+    }
+
+    #movie .btn-secondary {
+        background-color: transparent !important;
+        color: white !important;
+        font-size: 16px;
+        border-radius: 50%;
+        border: white 1px solid;
+        margin-bottom: 1em;
+    }
+
+    #movie .col-md-8 {
+        margin: 0;
+        padding: 0;
     }
 }
+
+body {
+    overflow-x: hidden;
+}
+
+.jumbotron {
+    padding-top: 1em;
+    /*background-image: url("")!important;*/
+            width: 100%;
+            display: block;
+            position: absolute;
+            background-repeat: no-repeat;
+            top: -3px;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-size: 65% 100%;
+            background-position: right;
+            background-color: #060601;
+            z-index: -1;
+}
+
+.jumbotron::before {
+    content: '';
+    background: linear-gradient(to right, #060601 50%, rgba(0, 0,0,0) 70%);
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: -10%;
+    bottom: -10%;
+    left: -2%;
+    right: 0;
+    transform: skew(18deg, 0deg);
+    z-index: -1;
+}
+
+
 
 
 

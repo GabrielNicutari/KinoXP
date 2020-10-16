@@ -5,7 +5,8 @@
 
     <title>Movie Selected</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/movies.css}" rel="stylesheet" >
+    <link th:href="@{/css/movie.css}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -13,19 +14,18 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/movies">Movie List</a>
-            </div>
-        </div>
-    </nav>
+<!--    <nav class="navbar navbar-expand-lg bg-dark">-->
+<!--        <div class="container">-->
+<!--            <div class="navbar-header">-->
+<!--                <a class="navbar-brand" href="/movies">Movie List</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
 
     <br>
 
-    <div class="container jumbotron">
+    <div class="jumbotron">
         <div id="movie" class="well"></div>
-<!--        <a th:href="@{/movies/delete/(id=${movie.id})}" class="btn btn-danger deleteButton">Delete Movie</a>-->
     </div>
 
     <!--Edit Modal-->
@@ -79,6 +79,11 @@
                             <input type="url" class="form-control" id="imageEdit" name="image" required>
                         </div>
 
+                        <div class="form-group" >
+                            <label for="coverEdit" class="col-form-label" >Cover URL:</label>
+                            <input type="url" class="form-control" id="coverEdit" name="cover" required>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -110,7 +115,6 @@
             </div>
         </div>
     </div>
-
 
     <script th:inline="javascript">
         /*<![CDATA[*/

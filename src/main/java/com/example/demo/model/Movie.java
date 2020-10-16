@@ -17,6 +17,7 @@ public class Movie {
     private String genre;
     private String description;
     private String image;
+    private String cover;
 
     //fields from actor
     private String actors; //there's a list inside
@@ -110,6 +111,14 @@ public class Movie {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     //    public String getType() {

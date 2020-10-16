@@ -16,7 +16,7 @@ public class MovieRepo {
     @Autowired
     JdbcTemplate template;
     public List<Movie> fetchAll(){
-        String query = "SELECT m.id, m.title, m.image  FROM movie m";
+        String query = "SELECT m.id, m.title, m.image FROM movie m";
         RowMapper<Movie> rm = new BeanPropertyRowMapper<>(Movie.class);
         return template.query(query, rm);
     }
@@ -28,14 +28,14 @@ public class MovieRepo {
     }
 
     public void add(Movie m) {
-        String query = "INSERT INTO movie (title, age_requirement, duration, genre, description, image)" +
+        String query = "INSERT INTO movie (title, age_requirement, duration, genre, description, image, cover)" +
                 "VALUES (?, ?, ?, ?, ?, ?)";
-        template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage());
+        template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage(), m.getCover());
     }
 
     public void update(Movie m, int id) {
-        String query = "UPDATE movie SET title = ?, age_requirement = ?, duration = ?, genre = ?, description = ?, image = ? WHERE id= ?";
-        template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage(), id);
+        String query = "UPDATE movie SET title = ?, age_requirement = ?, duration = ?, genre = ?, description = ?, image = ?, cover = ? WHERE id= ?";
+        template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage(), m.getCover(), id);
     }
 
     public Boolean delete(int id) {

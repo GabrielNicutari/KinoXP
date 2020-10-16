@@ -20,6 +20,7 @@ $(document).ready(function() {
             $('#genreEdit').val(movie.genre);
             $('#descriptionEdit').val(movie.description);
             $('#imageEdit').val(movie.image);
+            $('#coverEdit').val(movie.cover);
         });
         $('#editModal').modal();
     });
