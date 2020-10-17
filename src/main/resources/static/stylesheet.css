@@ -127,7 +127,13 @@ input[type=button]:hover {
     color: red !important;
 }
 
-
+.shawp {
+    display: inline-block;
+    width: 400px;
+    height: 400px;
+    background: url("/images/Shawp.jpg") center;
+    background-size: cover;
+}
 
 
 /*.bottom-section {*/
