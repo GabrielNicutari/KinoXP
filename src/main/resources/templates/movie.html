@@ -25,7 +25,7 @@
             <form th:action="@{/tickets/add}" method="post">
 
                 <div class="select-box">
-                    <div class="options-container">
+                    <div class="options-container" id="my-select">
                         <div class="option">
                             <input type="radio" class="radio" id="date1" name="category" />
                             <label for="date1">Date 1</label>
@@ -34,11 +34,6 @@
                         <div class="option">
                             <input type="radio" class="radio" id="date2" name="category" />
                             <label for="date2">Date 2</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="date3" name="category" />
-                            <label for="date3">Date 3</label>
                         </div>
 
                     </div>

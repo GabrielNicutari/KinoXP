@@ -71,13 +71,18 @@ function getMovie() {
 }
 
 function fetchShowtimes() {
+    let output = '';
+    var select = document.getElementById("my-select");
     $.each(showtimes, (index, showtime) => {
-        console.log(showtime.dateTime);
-        var select = document.getElementById("showtime-select");
-        var option = document.createElement("option");
-        option.text = showtime.dateTime;
-        select.add(option);
+        console.log(showtime.id);
+        output += `
+        <div class="option">
+            <input type="radio" class="radio" id="date${showtime.id}" name="category" value="${showtime.id}" onclick="displaySelected(id)"/>
+            <label for="date${showtime.id}">${showtime.dateTime}</label>
+        </div>
+        `;
     });
+    select.innerHTML = output;
 }
 
 function displaySelected(name) {
