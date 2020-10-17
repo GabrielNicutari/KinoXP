@@ -28,6 +28,7 @@ public class MovieController {
         List<Movie> movieList = movieService.fetchAll();
 
         model.addAttribute("movies", movieList);
+
         return "/movies";
     }
 
@@ -48,7 +49,6 @@ public class MovieController {
 
             m.setActors(actors);
         }
-
         model.addAttribute(m);
         model.addAttribute("showtimes", showtimes);
 
@@ -59,7 +59,19 @@ public class MovieController {
     @RequestMapping("/movies/viewOne")
     @ResponseBody
     public Movie viewOne(int id) {
-        return movieService.getOne(id); //still uses the same flow as getOne
+        Movie m = movieService.getOne(id);
+
+        List<Actor> actorList = movieService.fetchActorsByMovieId(id);
+        if(!actorList.isEmpty()) {
+            String actors = actorList.get(0).getName();
+
+            for (int i = 1; i < actorList.size(); i++) {
+                actors += ", " + actorList.get(i).getName();
+            }
+            m.setActors(actors);
+        }
+
+        return m; //still uses the same flow as getOne
     }
 
     @PostMapping(value="/movies/add")

@@ -118,6 +118,12 @@
                         </div>
 
                         <div class="form-group" >
+                            <label for="actorsEdit" class="col-form-label" >Actors:</label>
+                            <input type="text" pattern="[^;]+" oninvalid="this.setCustomValidity('Please fill out this field. The following characters are not allowed: \' ; \' ')"
+                                   oninput="this.setCustomValidity('')" class="form-control" id="actorsEdit" name="actors" required>
+                        </div>
+
+                        <div class="form-group" >
                             <label for="imageEdit" class="col-form-label" >Poster URL:</label>
                             <input type="url" class="form-control" id="imageEdit" name="image" required>
                         </div>

@@ -52,6 +52,7 @@ $(document).ready(function() {
             $('#durationEdit').val(movie.duration);
             $('#genreEdit').val(movie.genre);
             $('#descriptionEdit').val(movie.description);
+            $('#actorsEdit').val(movie.actors);
             $('#imageEdit').val(movie.image);
             $('#coverEdit').val(movie.cover);
         });
