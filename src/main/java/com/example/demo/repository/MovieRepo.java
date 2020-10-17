@@ -29,7 +29,7 @@ public class MovieRepo {
 
     public void add(Movie m) {
         String query = "INSERT INTO movie (title, age_requirement, duration, genre, description, image, cover)" +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         template.update(query, m.getTitle(), m.getAgeRequirement(), m.getDuration(), m.getGenre(), m.getDescription(), m.getImage(), m.getCover());
     }
 

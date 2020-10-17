@@ -15,21 +15,14 @@
 </head>
 <body>
 
-<!--    <nav class="navbar navbar-expand-lg bg-dark">-->
-<!--        <div class="container">-->
-<!--            <div class="navbar-header">-->
-<!--                <a class="navbar-brand" href="/movies">Movie List</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-
     <br>
 
     <div class="jumbotron">
         <div id="movie" class="well"></div>
 
         <div class="container">
-            <form action="result.php" method="POST">
+<!--            idk for sure yet-->
+            <form th:action="@{/tickets/add}" method="post">
 
                 <div class="select-box">
                     <div class="options-container">
