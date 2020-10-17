@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Actor;
 import com.example.demo.model.Movie;
 import com.example.demo.model.Showtime;
+import com.example.demo.model.Test;
 import com.example.demo.service.MovieService;
 import com.example.demo.service.ShowtimeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class MovieController {
         Movie m = movieService.getOne(id);
         LocalDate date = LocalDate.parse("2020-10-17");
         List<Showtime> showtimes = showtimeService.fetchShowtimesWithDateAndMovieId(date, id);
+        ArrayList<ArrayList<Showtime>> times = showtimeService.fetchAllInWeekWithMovieId(id);
 
         //Fetch actors for this specific movie as well
         List<Actor> actorList = movieService.fetchActorsByMovieId(id);
@@ -51,6 +53,7 @@ public class MovieController {
         }
         model.addAttribute(m);
         model.addAttribute("showtimes", showtimes);
+        model.addAttribute("times", times);
 
         return "/movie";
     }
@@ -78,6 +81,12 @@ public class MovieController {
     public String add(@ModelAttribute Movie m) {
         movieService.add(m);
         return "redirect:/movies";
+    }
+
+    @PostMapping(value="/tickets/add")
+    public String add(@ModelAttribute Test t, Model model) {
+        model.addAttribute("ticket", t);
+        return "/test";
     }
 
     @RequestMapping(value="/movies/update", method = {RequestMethod.PUT, RequestMethod.GET})

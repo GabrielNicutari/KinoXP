@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     selectedAll.forEach((selected) => {
         const optionsContainer = selected.previousElementSibling;
-        const searchBox = selected.nextElementSibling;
 
         const optionsList = optionsContainer.querySelectorAll(".option");
 
