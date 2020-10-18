@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Movie;
 import com.example.demo.model.Showtime;
 import com.example.demo.model.ShowtimeSplit;
+import com.example.demo.service.MovieService;
 import com.example.demo.service.ShowtimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ import java.util.Optional;
 public class ShowtimeController {
     @Autowired
     ShowtimeService showtimeService;
+
+    @Autowired
+    MovieService movieService;
 
     /* showtimeMovieId
     * - Shows movie details (Has yet to be added)
@@ -71,11 +76,13 @@ public class ShowtimeController {
         }
         return "showtime";
     }
-    */
+
     @GetMapping(value = {"/showtime/{movieId}", "/showtime/{movieId}/{adminEdit}"})
     public String showtimeMovieId (@PathVariable("movieId") int movieId,
                                    @PathVariable("adminEdit") Optional<String> adminEdit,
                                    Model model, String dateSelected){
+
+
         if(adminEdit.isPresent()){
             String editable = adminEdit.get();
             System.out.println("Says admin is present");
@@ -111,6 +118,23 @@ public class ShowtimeController {
         }
         return "showtime";
     }
+    @GetMapping("specificDate/{movieId}")
+    public String specificDate(@PathVariable("movieId") int movieId, String dateSelected, Model model){
+        if(dateSelected != null){
+            // Code for dateSelected.
+            System.out.println(dateSelected + "This is the date selected. Inside isPresent for date"); // Test if we get a date
+            if(showtimeService.isDate(dateSelected)){
+                LocalDate ld = LocalDate.parse(dateSelected);
+                List<Showtime> showtimeList = showtimeService.fetchShowtimesWithDateAndMovieId(ld, movieId);
+                model.addAttribute("date", "isDate");
+                model.addAttribute("day1", showtimeList);
+                System.out.println("Gotten from showtime");
+            }
+        }
+        return "specificDate";
+    }
+    */
+
 
     @GetMapping("/newShowtime/{movieId}")
     public String newShowtime (@PathVariable("movieId") int movieId, Model model){
@@ -132,7 +156,7 @@ public class ShowtimeController {
 
         showtimeService.addShowtime(converted);
 
-        return "redirect:/showtime/"+converted.getMovieId()+"/admin1234";
+        return "redirect:/doubleListTest/"+converted.getMovieId();
     }
 
     @GetMapping("deleteShowtime/{showtimeId}")
@@ -140,7 +164,7 @@ public class ShowtimeController {
         Showtime s = showtimeService.fetchShowtimeWithId(showtimeId);
         int movieId = s.getMovieId();
         showtimeService.deleteShowtime(showtimeId);
-        return "redirect:/showtime/"+movieId+"/admin1234";
+        return "redirect:/doubleListTest/"+movieId;
     }
 
     // Testing Link for future integration with TicketController
@@ -149,5 +173,29 @@ public class ShowtimeController {
         return "testTicket";
     }
 
+    @GetMapping("/showtime/{movieId}")
+    public String doubleTest (@PathVariable("movieId") int movieId, Model model){
+        List<List<Showtime>> lists = showtimeService.fetchWeekSowtimes(movieId);
+        model.addAttribute("days", lists);
+        Movie m = movieService.getOne(movieId);
+        model.addAttribute("title", m.getTitle());
+        ShowtimeSplit showtimeSplit = new ShowtimeSplit();
+        showtimeSplit.setMovieId(movieId);
+        // model.addAttribute("timeSelection", showtimeService.generateTimeList(16, 00, 15, 25));
+        model.addAttribute("showtimeSplit", showtimeSplit);
+
+        List<Movie> movieList = new ArrayList<>();
+        List<Movie> movies = movieService.fetchAll();
+        model.addAttribute("moviePojo", m);
+        model.addAttribute("movies", movies);
+
+        return "showtime";
+    }
+
+    @PostMapping("/anotherMovie")
+    public String changeMovie(Movie moviePojo){
+
+        return "redirect:/showtime/"+moviePojo.getId();
+    }
 
 }

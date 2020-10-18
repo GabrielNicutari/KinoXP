@@ -2,65 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Showtime - Movie X</title>
+    <title>Testing MD arraylist Print</title>
 </head>
 <body>
 
-<h2 th:text="${title}"></h2>
-<h3>Showtimes for the following week: </h3>
 
-<form action="#" th:action="@{|/anotherMovie/|}" th:object="${moviePojo}" method="post">
-    <select th:field="*{id}">
-        <option th:each="movie : ${movies}"
-                th:value="${movie.id}"
-                th:text="${movie.title}">
-        </option>
-    </select>
-    <button name="submit" type="submit" value="0">Go</button>
-</form>
-<br>
-<table>
-    <tr th:each="day, stat : ${days}">
-        <div th:if="${not #lists.isEmpty(day)}">
-            <td th:text="${#temporals.format(day[0].dateTime, 'dd/MMM/yyyy')}">
-            </td>
-        </div>
-        <!--<span th:text="${#temporals.format(day1[0].dateTime, 'dd/MMM/yyyy')}"> </span>-->
-        <td th:each="showtime : ${day}">
-            &nbsp;
-            <a th:href="@{'/testTicket/'+${showtime.id}}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}">
-                Link with showtime
-            </a>
-
-            <span th:text="R+${showtime.roomId}"></span>
-
-            <a th:href="@{'/deleteShowtime/'+${showtime.id}}"/>
-            <button>Del</button>
-            &nbsp;
-        </td>
-
-    </tr>
-</table>
-
-<br>
-<br>
-
-<h3>Create new showtime for the movie: </h3>
-
-<br>
-
-<form action="#" th:action="@{|/saveShowtimeSplit/${showtimeSplit.movieId}|}" th:object="${showtimeSplit}" method="post">
-    Room number:
-    <select th:field="*{roomId}">
-        <option value="1">1</option>
-        <option value="2">2</option>
-    </select> </br>
-    Date: <input type="date" name="date" th:field="*{date}"/><br/>
-    Time: <input type="time" name="time" th:field="*{time}"/></br>
-    <button name="submit" type="submit" value="0">Submit</button>
-</form>
-
-<!--
+<!-- OLD SHOWTIME CODE:::: -->
 
 <form th:action="@{|/showtime/${movieId}|}" method="get">
     <input id="dateSelected" type="date" name="dateSelected" th:min="${today}" placeholder="selectDate">
@@ -72,8 +19,8 @@
         <thead>
         <tr>
             <b>
-            <span th:text="${#temporals.format(day1[0].dateTime, 'dd/MMM/yyyy')}"> </span> &nbsp;
-            <span th:text="${#temporals.dayOfWeekName(day1[0].dateTime)}"></span>
+                <span th:text="${#temporals.format(day1[0].dateTime, 'dd/MMM/yyyy')}"> </span> &nbsp;
+                <span th:text="${#temporals.dayOfWeekName(day1[0].dateTime)}"></span>
             </b>
             <th>Time</th>
             <th>Room</th>
@@ -311,6 +258,5 @@
     <a th:href="@{'/newShowtime/'+${movieId}}"/>
     <button>Create New Showtime For this movie</button>
 </div>
-
 </body>
 </html>
