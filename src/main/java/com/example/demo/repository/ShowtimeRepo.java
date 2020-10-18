@@ -25,7 +25,7 @@ public class ShowtimeRepo {
         return showtimesFound;
     }
     public List<Showtime> fetchAllWithMovieId(int movieId){
-        String sql = "SELECT*FROM showtime WHERE movie_id = ?";
+        String sql = "SELECT*FROM showtime WHERE movie_id = ? ORDER BY date_time";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
         List<Showtime> showtimesForMovie = template.query(sql, rowMapper);
         return showtimesForMovie;
@@ -43,7 +43,7 @@ public class ShowtimeRepo {
         return movieShowtimesThisWeek;
     }
     public List<Showtime> fetchShowtimesWithDateAndMovieId (LocalDate date, int movieId){
-        String sql = "SELECT * FROM showtime WHERE movie_id = ? and DATEDIFF(date_time, ?) = 0";
+        String sql = "SELECT * FROM showtime WHERE movie_id = ? and DATEDIFF(date_time, ?) = 0 ORDER BY date_time";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
         List<Showtime> showtimes = template.query(sql, rowMapper, movieId, date);
         return showtimes;

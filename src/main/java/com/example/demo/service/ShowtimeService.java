@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Showtime;
 import com.example.demo.repository.ShowtimeRepo;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,8 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ShowtimeService {
@@ -61,6 +61,63 @@ public class ShowtimeService {
         week.add(day7);
         return week;
     }
+    /*
+    public List<List<Showtime>> doubleTest (int movieId){
+        List<List<Showtime>> doubleList = new ArrayList<List<Showtime>>();
+        List<Showtime> week = showtimeRepo.fetchAllInWeekWithMovieId(movieId);
+        LocalDate ld = LocalDate.now();
+        List<Showtime> today = new ArrayList<>();
+        for(int i = 0; i < week.size(); i++){
+            if(week.get(i).getDateTime().toLocalDate().equals(ld)){
+
+            }
+        }
+        for(int i = 0; i < week.size(); i++){
+            LocalDate listDate = week.get(i).getDateTime().toLocalDate(); // Date in the week from mysql
+            for(int j = 0; j < doubleList.size(); j++){
+                List<Showtime> list = doubleList.get(j);
+                for(int k = 0; k < list.size(); k++){
+                    if(list.get(k).getDateTime().toLocalDate().equals(listDate)){ // Equal to the list within doubleList dates
+                        doubleList.get(j).add(week.get(i));
+                    }
+                }
+            }
+        }
+        return ;
+    }
+     */
+    public List<List<Showtime>> fetchWeekSowtimes (int movieId){
+        List<List<Showtime>> weekShowtimes = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        for(int i = 0; i < 7; i++){
+            LocalDate date = today.plusDays(i);
+            List<Showtime> dateShowtimes = showtimeRepo.fetchShowtimesWithDateAndMovieId(date, movieId);
+            weekShowtimes.add(dateShowtimes);
+        }
+        return weekShowtimes;
+    }
+
+    /// NEEDS FIX 
+    public List<Showtime> fetchDateMovieGabriel (int movieId){
+        HashMap<LocalDate, List<LocalTime>> map = new HashMap<>();
+        List<Showtime> all = showtimeRepo.fetchAllWithMovieId(movieId);
+        HashSet<LocalDate> set = new HashSet<>();
+        for(int i = 0; i < all.size(); i++){
+            LocalDate date = all.get(i).getDateTime().toLocalDate();
+            set.add(date);
+        }
+        for (LocalDate d : set) {
+            LocalDate key = d;
+            List<LocalTime> times = new ArrayList<>();
+            for(int i = 0; i < all.size(); i++){
+                if(key.equals(all.get(i).getDateTime().toLocalDate())){
+                    times.add(all.get(i).getDateTime().toLocalTime());
+                }
+            }
+        }
+        return all;
+    }
+
 
     public List<Showtime> fetchShowtimesWithDateAndMovieId (LocalDate date, int movieId){
         return showtimeRepo.fetchShowtimesWithDateAndMovieId(date, movieId);
