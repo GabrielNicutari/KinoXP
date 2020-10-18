@@ -75,10 +75,6 @@ function fetchShowtimes() {
     var dateSelect = document.getElementById("date-select");
     var timeSelect = document.getElementById("time-select");
 
-    const selected = document.querySelector(".selected");
-    const optionsContainer = document.querySelector(".options-container");
-    const optionsList = document.querySelectorAll(".option");
-
     //debugging
     console.log(showtimes);
     console.log(times);
@@ -106,15 +102,39 @@ function fetchShowtimes() {
 
     dateSelect.addEventListener('change', function populate_child(e) {
         timeSelect.innerHTML='';
+        var emptyOptionList = true;
         itm = e.target.value;
         if(itm in times) {
             for(let j = 0; j < times[itm].length; j++) {
+                emptyOptionList = false;  //if it gets here, that means the subarray is not empty
                 timeSelect.innerHTML += `
                 <div class="option">
                     <input type="radio" class="radio" id="${times[itm][j].id}" name="time" value="${times[itm][j].dateTime}" onclick="displaySelected(value)"/>
                     <label for="${times[itm][j].id}">${times[itm][j].dateTime}</label>
                 </div>
                 `;
+            }
+
+            if(!emptyOptionList) {
+                const selectedAll = document.querySelectorAll(".selected");
+
+                selectedAll.forEach((selected) => {
+                    const optionsContainer = selected.previousElementSibling;
+
+                    const optionsList = optionsContainer.querySelectorAll(".option");
+
+                    timeSelect.classList.add("active");
+
+                    optionsList.forEach((o) => {
+                        o.addEventListener("click", () => {
+                            selected.innerHTML = o.querySelector("label").innerHTML;
+                            optionsContainer.classList.remove("active");
+                        });
+                    });
+                });
+            } else {
+                const selected = document.getElementById("s1");
+                selected.innerHTML = "Pick A Time";
             }
         }
     });
