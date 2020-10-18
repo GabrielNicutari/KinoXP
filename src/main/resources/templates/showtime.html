@@ -60,6 +60,48 @@
     <button name="submit" type="submit" value="0">Submit</button>
 </form>
 
+<br>
+<br>
+<h4>Find showtimes for a specific date: </h4>
+<br>
+<form th:action="@{|/showtime/${movieId}|}" method="get">
+    <input id="dateSelected" type="date" name="dateSelected" th:min="${today}" placeholder="selectDate">
+    <button type="submit">Search</button>
+</form>
+<br>
+<div th:if="${d}">
+    <table border="1" style="width: auto">
+        <thead>
+        <tr>
+            <br>
+            <b>
+                <span th:text="${#temporals.format(date[0].dateTime, 'dd/MMM/yyyy')}"> </span> &nbsp;
+                <span th:text="${#temporals.dayOfWeekName(date[0].dateTime)}"></span>
+            </b>
+            <br>
+            <th>Time</th>
+            <th>Room</th>
+            <th>Seats Available</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="showtime: ${date}">
+            <td>
+                <a th:href="@{'/testTicket/'+${showtime.id}}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}">
+                    Link with showtime
+                </a>
+            </td>
+            <!--<td> <a th:href="@{'/testTicket/'+${showtime.id}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}"/></td>-->
+            <td th:text="${showtime.roomId}"/>
+            <td>insert</td>
+            <td>
+                <a th:href="@{'/deleteShowtime/'+${showtime.id}}"/>
+                <button>Del</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 
 </body>
