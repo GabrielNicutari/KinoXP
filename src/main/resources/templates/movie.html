@@ -9,24 +9,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/movie.js" th:src="@{/js/movie.js}"></script>
 </head>
 <body>
 
-<!--    <nav class="navbar navbar-expand-lg bg-dark">-->
-<!--        <div class="container">-->
-<!--            <div class="navbar-header">-->
-<!--                <a class="navbar-brand" href="/movies">Movie List</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-
     <br>
 
     <div class="jumbotron">
         <div id="movie" class="well"></div>
+
+        <div class="container">
+<!--            idk for sure yet-->
+            <form th:action="@{/tickets/add}" method="post">
+
+                <div class="select-box">
+                    <div class="options-container" id="date-select">
+<!--                        <div class="option">-->
+<!--                            <input type="radio" class="radio" id="date1" name="category" />-->
+<!--                            <label for="date1">Date 1</label>-->
+<!--                        </div>-->
+
+<!--                        <div class="option">-->
+<!--                            <input type="radio" class="radio" id="date2" name="category" />-->
+<!--                            <label for="date2">Date 2</label>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="selected">
+                        Pick A Date
+                    </div>
+                </div>
+
+                <div class="select-box">
+                    <div class="options-container" id="time-select">
+                        <div class="option">
+                            <input type="radio" class="radio" id="time1" name="time" value="time1"/>
+                            <label for="time1">Time 1</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="time2" name="category" />
+                            <label for="time2">Time 2</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="time3" name="category" />
+                            <label for="time3">Time 3</label>
+                        </div>
+                    </div>
+
+                    <div class="selected" id="s1">
+                        Pick A Time
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-submit" />
+
+            </form>
+        </div>
+
     </div>
+
 
     <!--Edit Modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -75,6 +118,12 @@
                         </div>
 
                         <div class="form-group" >
+                            <label for="actorsEdit" class="col-form-label" >Actors:</label>
+                            <input type="text" pattern="[^;]+" oninvalid="this.setCustomValidity('Please fill out this field. The following characters are not allowed: \' ; \' ')"
+                                   oninput="this.setCustomValidity('')" class="form-control" id="actorsEdit" name="actors" required>
+                        </div>
+
+                        <div class="form-group" >
                             <label for="imageEdit" class="col-form-label" >Poster URL:</label>
                             <input type="url" class="form-control" id="imageEdit" name="image" required>
                         </div>
@@ -119,12 +168,15 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         var movie = /*[[${movie}]]*/ [];
+        var showtimes =  /*[[${showtimes}]]*/ 'default';
+        var times = /*[[${times}]]*/ 'default'
         /*]]>*/
     </script>
 
     <script th:src="@{/js/movies.js}"></script>
     <script>
         getMovie();
+        fetchShowtimes();
     </script>
 </body>
 </html>

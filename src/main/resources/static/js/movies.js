@@ -52,8 +52,15 @@ function getMovie() {
                 <li class="list-group-item"><strong>Age Requirement:</strong> ${movie.ageRequirement}</li>
                 <li class="list-group-item"><strong>Actors:</strong> ${movie.actors}</li>
             </ul>
+            
             <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
             <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
+            
+            <div class="form-group" style="display: inline-block" role="group">
+                <select id="showtime-select" class="custom-select">
+                    <option selected="">Pick A Date</option>
+                </select>
+            </div>
        </div>
     </div>`;
 
@@ -61,4 +68,78 @@ function getMovie() {
     jumbotron.style.backgroundImage = "url("+ movie.cover +")";
 
     $('#movie').html(output);
+}
+
+function fetchShowtimes() {
+    let output = '';
+    var dateSelect = document.getElementById("date-select");
+    var timeSelect = document.getElementById("time-select");
+
+    //debugging
+    console.log(showtimes);
+    console.log(times);
+
+    // $.each(showtimes, (index, showtime) => {
+    //     console.log(showtime.id);
+    //     timeSelect.innerHTML += `
+    //     <div class="option">
+    //         <input type="radio" class="radio" id="date${showtime.id}" name="category" value="${showtime.id}" onclick="displaySelected(id)"/>
+    //         <label for="date${showtime.id}">${showtime.dateTime}</label>
+    //     </div>
+    //     `;
+    // });
+
+    $.each(times, (index, date) => {
+        output += `
+        <div class="option">
+            <input type="radio" class="radio" id="${index}" name="date" value="${index}" onclick="displaySelected(value)" />
+            <label for="${index}">${index}</label>
+        </div>
+        `;
+    });
+
+    dateSelect.innerHTML = output;
+
+    dateSelect.addEventListener('change', function populate_child(e) {
+        timeSelect.innerHTML='';
+        var emptyOptionList = true;
+        itm = e.target.value;
+        if(itm in times) {
+            for(let j = 0; j < times[itm].length; j++) {
+                emptyOptionList = false;  //if it gets here, that means the subarray is not empty
+                timeSelect.innerHTML += `
+                <div class="option">
+                    <input type="radio" class="radio" id="${times[itm][j].id}" name="time" value="${times[itm][j].dateTime}" onclick="displaySelected(value)"/>
+                    <label for="${times[itm][j].id}">${times[itm][j].dateTime}</label>
+                </div>
+                `;
+            }
+
+            if(!emptyOptionList) {
+                const selectedAll = document.querySelectorAll(".selected");
+
+                selectedAll.forEach((selected) => {
+                    const optionsContainer = selected.previousElementSibling;
+
+                    const optionsList = optionsContainer.querySelectorAll(".option");
+
+                    timeSelect.classList.add("active");
+
+                    optionsList.forEach((o) => {
+                        o.addEventListener("click", () => {
+                            selected.innerHTML = o.querySelector("label").innerHTML;
+                            optionsContainer.classList.remove("active");
+                        });
+                    });
+                });
+            } else {
+                const selected = document.getElementById("s1");
+                selected.innerHTML = "Pick A Time";
+            }
+        }
+    });
+}
+
+function displaySelected(name) {
+    console.log(name);
 }

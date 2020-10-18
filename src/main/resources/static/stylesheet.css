@@ -35,12 +35,8 @@ body {
 }
 
 .top-section {
-    padding-top: 4em;
-    background: url("css/KinoImage.jpg");
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    padding-bottom: 8em;
-    height: 400px;
+    position: absolute;
+    padding-top: 15em;
 }
 
 header {
@@ -74,17 +70,17 @@ input[type=button]:hover {
     background-color: #920000;
 }
 
-img {
-    margin-left: 40px;
-    margin-bottom: 40px;
-    padding: 2em;
-    background: #FFFFFF;
-    width: 42%;
-    float: left;
-    border-radius: 0.5em;
-    object-fit: contain;
-    height: 500px;
-}
+/*img {*/
+/*    margin-left: 40px;*/
+/*    margin-bottom: 40px;*/
+/*    padding: 2em;*/
+/*    background: #FFFFFF;*/
+/*    width: 42%;*/
+/*    float: left;*/
+/*    border-radius: 0.5em;*/
+/*    object-fit: contain;*/
+/*    height: 500px;*/
+/*}*/
 
 .left-part {
     margin-top: 2rem;
@@ -113,11 +109,38 @@ img {
     text-transform: uppercase;
 }
 
-.bottom-section {
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
     width: 100%;
-    background-color: #201717;
-    color: #867979;
-    display: grid;
-    grid-template-columns: repeat(2, 60%);
-
+    z-index: 5;
 }
+
+.logo-image{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+    color: red !important;
+}
+
+.shawp {
+    display: inline-block;
+    width: 400px;
+    height: 400px;
+    background: url("/images/Shawp.jpg") center;
+    background-size: cover;
+}
+
+
+/*.bottom-section {*/
+/*    width: 100%;*/
+/*    background-color: #201717;*/
+/*    color: #867979;*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(2, 60%);*/
+
+/*}*/
