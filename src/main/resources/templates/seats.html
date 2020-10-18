@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet"  th:href="@{/style.css}"/>
     <title>seatsSmall</title>
-</head>
-<body>
+</head >
+<body onload="loadPage()" >
     <ul class="legend">
         <li>
             <div class="seat"></div>
@@ -21,15 +21,21 @@
         </li>
     </ul>
     <div class="container">
-        <tr th:each ="row : ${seats}">
-            <div class="row">
-                <td th:each = "seat : ${row}">
-                    <div th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
-                    </div>
-                </td>
-            </div>
-        </tr>
-
+        <table>
+            <thead id ="thead">
+            </thead>
+            <tbody>
+            <tr class="classRow" th:each ="row : ${seats}">
+                <div class="row">
+                    <td th:each = "seat : ${row}" class="seatCounter">
+                        <div th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
+                        </div>
+                    </td>
+                    <th><span  class="rowNumber" id="rowNumber"></span></th>
+                </div>
+            </tr>
+            </tbody>
+        </table>
         <div class="screen"></div>
         <p class="notification">
             You have selected <input id="count" type="text" value="0" disabled/> seats.
@@ -57,5 +63,28 @@
     function reload(){
         location.reload();
     }
+
+    function getColumnNum(){
+        let size =document.getElementsByClassName("rowNumber").length
+        for (let i=0 ; i<size;i++){
+            document.getElementsByClassName("rowNumber")[i].append((size-i) + "")
+        }
+    }
+    function getRowNumber(){
+        const amount =  document.getElementsByClassName("seatCounter").length;
+        const column = document.getElementsByClassName("classRow").length;
+        const row = amount/column;
+        for (let i = 1; i<=row; i ++){
+            var th = document.createElement("th");
+            th.innerHTML =i + "";
+            document.getElementById("thead").appendChild(th);
+        }
+    }
+    function loadPage(){
+        getColumnNum();
+        getRowNumber();
+    }
+
+
 </script>
 </html>
