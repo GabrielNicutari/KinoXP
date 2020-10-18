@@ -27,6 +27,9 @@ public class ShowtimeService {
     public List<Showtime> fetchShowtimesWithDateAndMovieId (LocalDate date, int movieId){
         return showtimeRepo.fetchShowtimesWithDateAndMovieId(date, movieId);
     }
+    public List<Showtime> fetchShowtimeFuture(int movieId){
+        return showtimeRepo.fetchShowtimeFuture(movieId);
+    }
 
     public boolean addShowtime(Showtime showtime){
         return showtimeRepo.addShowtime(showtime);
