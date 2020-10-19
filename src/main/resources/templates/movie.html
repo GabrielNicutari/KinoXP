@@ -22,7 +22,7 @@
 
         <div class="container">
 <!--            idk for sure yet-->
-            <form th:action="@{/tickets/add}" method="post">
+            <form th:action="@{/selectSeats}" method="post">
 
                 <div class="select-box">
                     <div class="options-container" id="date-select">
@@ -42,6 +42,9 @@
                         Pick A Time
                     </div>
                 </div>
+
+                <input type="number" name="movieId" th:value="${movie.id}" hidden>
+
                 <input type="submit" value="Submit" class="btn btn-submit" />
 
             </form>

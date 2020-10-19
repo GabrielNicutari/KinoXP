@@ -51,7 +51,7 @@ public class MovieController {
 
             m.setActors(actors);
         }
-        model.addAttribute(m);
+        model.addAttribute("movie", m);
         model.addAttribute("times", map);
 
         return "/movie";

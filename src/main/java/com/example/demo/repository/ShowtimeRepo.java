@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -62,5 +63,10 @@ public class ShowtimeRepo {
         RowMapper<Integer> rowMapper = new BeanPropertyRowMapper<>(Integer.class);
         List<Integer> roomIds = template.query(sql, rowMapper);
         return roomIds.get(0);
+    }
+
+    //We are assuming there can't be identical dateTimes and movieIds from one room to another => this would only find one register
+    public int findIdBasedOnFields(int movieId, LocalDateTime dateTime) {
+        return template.queryForObject("SELECT showtime.id FROM showtime WHERE movie_id = '" + movieId + "' AND date_time = '" + dateTime + "'", int.class);
     }
 }

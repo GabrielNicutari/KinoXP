@@ -5,6 +5,7 @@ import com.example.demo.repository.ShowtimeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
@@ -92,5 +93,9 @@ public class ShowtimeService {
                 .sorted(Map.Entry.comparingByKey())
                 .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
         return sortedMap;
+    }
+
+    public int findIdBasedOnFields(int movieId, LocalDateTime dateTime) {
+        return showtimeRepo.findIdBasedOnFields(movieId, dateTime);
     }
 }

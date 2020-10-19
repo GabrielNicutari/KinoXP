@@ -16,15 +16,21 @@ public class Showtime {
 
     private int movieId;
     private int roomId;
+    //split DateTime as Strings
+    private String date;
+    private String time;
+
     private LocalDateTime dateTime;
 
     public Showtime() {
     }
-    public Showtime(int id, int movieId, int roomId, LocalDateTime dateTime, int timeTableId) {
+    public Showtime(int id, int movieId, int roomId, LocalDateTime dateTime, String date, String time) {
         this.id = id;
         this.movieId = movieId;
         this.roomId = roomId;
         this.dateTime = dateTime;
+        this.date = date;
+        this.time = time;
     }
 
     public int getId() {
@@ -58,5 +64,22 @@ public class Showtime {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
 
 }
