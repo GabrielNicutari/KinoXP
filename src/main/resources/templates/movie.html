@@ -22,7 +22,7 @@
 
         <div class="container">
 <!--            idk for sure yet-->
-            <form th:action="@{/selectSeats}" method="post">
+            <form th:action="@{/selectSeats}" method="post" onsubmit="return validateForm()">
 
                 <div class="select-box">
                     <div class="options-container" id="date-select">

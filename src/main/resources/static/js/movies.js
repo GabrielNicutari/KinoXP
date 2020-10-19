@@ -92,7 +92,7 @@ function fetchShowtimes() {
     $.each(times, (index, date) => {
         output += `
         <div class="option">
-            <input type="radio" class="radio" id="${index}" name="date" value="${index}" onclick="displaySelected(value)" />
+            <input type="radio" class="radio" id="${index}" name="date" value="${index}" onclick="displaySelected(value)"/>
             <label for="${index}">${index}</label>
         </div>
         `;
@@ -123,6 +123,8 @@ function fetchShowtimes() {
 
                     const optionsList = optionsContainer.querySelectorAll(".option");
 
+                    const selectedS1 = document.getElementById("s1");
+                    selectedS1.innerHTML = "Pick A Time";
                     timeSelect.classList.add("active");
 
                     optionsList.forEach((o) => {
@@ -142,4 +144,20 @@ function fetchShowtimes() {
 
 function displaySelected(name) {
     console.log(name);
+}
+
+function validateForm() {
+    var valid = true;
+
+    const selectedAll = document.querySelectorAll(".selected");
+
+    selectedAll.forEach((selected) => {
+        if(selected.innerHTML.trim() === "Pick A Time" || selected.innerHTML.trim() === "Pick A Date") {
+            valid = false;
+        }
+    });
+    if(!valid) {
+        alert("Please fill all the dropdown fields below!");
+    }
+    return valid;
 }
