@@ -21,9 +21,9 @@ public class ShowtimeRepo {
         return showtimesFound;
     }
     public List<Showtime> fetchAllWithMovieId(int movieId){
-        String sql = "SELECT*FROM showtime WHERE movie_id = ? ORDER BY date_time";
+        String sql = "SELECT * FROM showtime WHERE movie_id = ? ORDER BY date_time";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
-        List<Showtime> showtimesForMovie = template.query(sql, rowMapper);
+        List<Showtime> showtimesForMovie = template.query(sql, rowMapper, movieId);
         return showtimesForMovie;
     }
     public Showtime fetchShowtimeWithId(int showtimeId){

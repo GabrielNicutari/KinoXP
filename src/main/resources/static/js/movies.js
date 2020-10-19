@@ -109,8 +109,8 @@ function fetchShowtimes() {
                 emptyOptionList = false;  //if it gets here, that means the subarray is not empty
                 timeSelect.innerHTML += `
                 <div class="option">
-                    <input type="radio" class="radio" id="${times[itm][j].id}" name="time" value="${times[itm][j].dateTime}" onclick="displaySelected(value)"/>
-                    <label for="${times[itm][j].id}">${times[itm][j].dateTime}</label>
+                    <input type="radio" class="radio" id="time${times[itm][j]}" name="time" value="${times[itm][j]}" onclick="displaySelected(value)"/>
+                    <label for="time${times[itm][j]}">${times[itm][j]}</label>
                 </div>
                 `;
             }

@@ -1,17 +1,20 @@
 package com.example.demo.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Test {
-    private int date;
+    private String date;
     private String time;
 
     public Test () {
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

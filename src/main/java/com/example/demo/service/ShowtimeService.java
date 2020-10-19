@@ -5,6 +5,7 @@ import com.example.demo.repository.ShowtimeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
@@ -55,5 +56,41 @@ public class ShowtimeService {
             dates = false;
         }
         return dates;
+    }
+
+    //For Movies
+    public LinkedHashMap<LocalDate, TreeSet<LocalTime>> fetchDatesAndTimesForMovie (int movieId){
+        LinkedHashMap<LocalDate, TreeSet<LocalTime>> map = new LinkedHashMap<>();
+
+        List<Showtime> all = showtimeRepo.fetchAllWithMovieId(movieId);
+
+        for(int i = 0; i < all.size(); i++){
+            LocalDate date = all.get(i).getDateTime().toLocalDate();
+
+            if(map.containsKey(date)) {
+                continue;
+            }
+
+            TreeSet<LocalTime> times = new TreeSet<>();
+            for(int j = 0; j < all.size(); j++) {
+                if(date.equals(all.get(j).getDateTime().toLocalDate())){
+                    LocalTime time = all.get(j).getDateTime().toLocalTime();
+                    times.add(time);
+                }
+            }
+            map.put(date, times);
+        }
+        map = sortMap(map); //ascending
+        return map;
+    }
+
+    private LinkedHashMap<LocalDate, TreeSet<LocalTime>> sortMap(HashMap<LocalDate, TreeSet<LocalTime>> map) {
+        LinkedHashMap<LocalDate, TreeSet<LocalTime>> sortedMap = new LinkedHashMap<>();
+
+        map.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+        return sortedMap;
     }
 }

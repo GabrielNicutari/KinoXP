@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.*;
 
 @Controller
 public class MovieController {
@@ -36,9 +36,9 @@ public class MovieController {
     @GetMapping("/movies/getOne/{id}")
     public String getOne(@PathVariable("id") int id, Model model) {
         Movie m = movieService.getOne(id);
-        LocalDate date = LocalDate.parse("2020-10-17");
-        List<Showtime> showtimes = showtimeService.fetchShowtimesWithDateAndMovieId(date, id);
-        ArrayList<ArrayList<Showtime>> times = showtimeService.fetchAllInWeekWithMovieId(id);
+
+        LinkedHashMap<LocalDate, TreeSet<LocalTime>> map = showtimeService.fetchDatesAndTimesForMovie(id);
+        System.out.println("map: " + map);
 
         //Fetch actors for this specific movie as well
         List<Actor> actorList = movieService.fetchActorsByMovieId(id);
@@ -52,8 +52,7 @@ public class MovieController {
             m.setActors(actors);
         }
         model.addAttribute(m);
-        model.addAttribute("showtimes", showtimes);
-        model.addAttribute("times", times);
+        model.addAttribute("times", map);
 
         return "/movie";
     }
