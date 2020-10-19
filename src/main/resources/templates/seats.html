@@ -48,6 +48,8 @@
             <input type="submit" value="confirm">
             <button id="refresh" onclick="reload()">cancel seat selection</button>
         </form>
+
+        <div>for that show time there been sold<span id="soldSeats"></span> tickets</div>
         <script src="script.js" type="text/javascript" ></script>
 
     </div>
@@ -80,9 +82,15 @@
             document.getElementById("thead").appendChild(th);
         }
     }
+
+    function soldTickets(){
+        let sold = document.getElementsByClassName("seat taken").length
+        document.getElementById("soldSeats").append(sold-1+"");
+    }
     function loadPage(){
         getColumnNum();
         getRowNumber();
+        soldTickets();
     }
 
 
