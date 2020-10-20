@@ -78,40 +78,23 @@ public class ShowtimeController {
 
         // Get available seats:
         List<List<String>> weekSeats = new ArrayList<>();
-        System.out.println("lists.size: " + lists.size());
         for(int i = 0; i < lists.size(); i++){
-            System.out.println("Lists for loop index: " + i);
             List<Showtime> iter = lists.get(i);
             List<String> daySeats = new ArrayList<>();
-            System.out.println("iter.size: " + iter.size());
             for(int j = 0; j < iter.size(); j++){
-                System.out.println("Inner for loop index: " + i);
-                System.out.println("The showtimeId i'm passing on: " + iter.get(j).getId());
                 int booked = ticketService.amountOfTicketsForShowtime(iter.get(j).getId());
                 int kr1 = 240 - booked;
                 int kr2 = 400 - booked;
                 String available = "";
                 if(iter.get(j).getRoomId() == 1){ //240
                     available = ""+ kr1 + "/" + 240;
-                    System.out.println(available);
                 } else if (iter.get(j).getRoomId() == 2){ //400
                     available = ""+ kr2 + "/" + 400;
-                    System.out.println(available);
                 }
-                System.out.println("Adding available: " + available);
                 daySeats.add(available);
             }
-            System.out.println("Outer for loop, daySeats.size: " + daySeats.size());
             weekSeats.add(daySeats);
         }
-        System.out.println();
-        System.out.println("Printing weekseats: ");
-        for(int i = 0; i < weekSeats.size(); i++){
-            for(int k = 0; k < weekSeats.get(i).size(); k++){
-                System.out.println(weekSeats.get(i).get(k));
-            }
-        }
-        //
         model.addAttribute("available", weekSeats);
 
 

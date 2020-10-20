@@ -27,7 +27,7 @@
         </div>
         <!--<span th:text="${#temporals.format(day1[0].dateTime, 'dd/MMM/yyyy')}"> </span>-->
         <td th:each="showtime, iter : ${day}">
-            &nbsp;&nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; 
             <a th:href="@{'/selectSeats/'+${showtime.id}}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}">
                 Link with showtime
             </a>
@@ -37,9 +37,8 @@
             <span th:text="${available[__${stat.index}__][__${iter.index}__]}"></span>
 
             <a th:href="@{'/deleteShowtime/'+${showtime.id}}"/>
-            <button>Del</button>
+            <button style="margin-right:20px">Del</button>
 
-            &nbsp; &nbsp; &nbsp;
         </td>
 
     </tr>
