@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.model.Movie;
 import com.example.demo.model.Showtime;
 import com.example.demo.model.ShowtimeSplit;
+import com.example.demo.repository.TicketsRepo;
 import com.example.demo.service.MovieService;
 import com.example.demo.service.ShowtimeService;
+import com.example.demo.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +27,9 @@ public class ShowtimeController {
     @Autowired
     MovieService movieService;
 
+    @Autowired
+    TicketService ticketService;
+
     @PostMapping("/saveShowtimeSplit/{movieId}")
     public String saveShowtimeSplit (@PathVariable("movieId") int movieId, ShowtimeSplit showtimeSplit){
         showtimeSplit.setMovieId(movieId);
@@ -31,7 +37,13 @@ public class ShowtimeController {
         Showtime converted = new Showtime();
         converted.setMovieId(movieId);
         converted.setRoomId(showtimeSplit.getRoomId());
-        converted.setDateTime(lt.plusHours(8)); //TimeDiff gearhost (Mountain Standard Time) -> java (UTC+2)
+        LocalDate timeShift = LocalDate.parse("2020-10-25");
+        if(lt.toLocalDate().isAfter(timeShift)){
+            converted.setDateTime(lt.plusHours(7));
+        } else {
+            converted.setDateTime(lt.plusHours(8)); //TimeDiff gearhost (Mountain Standard Time) -> java (UTC+2)
+        }
+
 
         // After saving the new showtime, this inserts path to view the date that the showtime belongs to when redirecting
         String dSelectPath = "?dateSelected="+showtimeSplit.getDate();
@@ -46,7 +58,7 @@ public class ShowtimeController {
         Showtime s = showtimeService.fetchShowtimeWithId(showtimeId);
         int movieId = s.getMovieId();
         showtimeService.deleteShowtime(showtimeId);
-        return "redirect:/doubleListTest/"+movieId;
+        return "redirect:/showtime/"+movieId;
     }
 
     // Testing Link for future integration with TicketController
@@ -64,6 +76,28 @@ public class ShowtimeController {
         Movie m = movieService.getOne(movieId);
         model.addAttribute("title", m.getTitle());
 
+        // Get available seats:
+        List<List<String>> weekSeats = new ArrayList<>();
+        for(int i = 0; i < lists.size(); i++){
+            List<Showtime> iter = lists.get(i);
+            List<String> daySeats = new ArrayList<>();
+            for(int j = 0; j < iter.size(); j++){
+                int booked = ticketService.amountOfTicketsForShowtime(iter.get(j).getId());
+                int kr1 = 240 - booked;
+                int kr2 = 400 - booked;
+                String available = "";
+                if(iter.get(j).getRoomId() == 1){ //240
+                    available = ""+ kr1 + "/" + 240;
+                } else if (iter.get(j).getRoomId() == 2){ //400
+                    available = ""+ kr2 + "/" + 400;
+                }
+                daySeats.add(available);
+            }
+            weekSeats.add(daySeats);
+        }
+        model.addAttribute("available", weekSeats);
+
+
         // Create New Showtime:
         ShowtimeSplit showtimeSplit = new ShowtimeSplit();
         showtimeSplit.setMovieId(movieId);
@@ -71,9 +105,16 @@ public class ShowtimeController {
         model.addAttribute("showtimeSplit", showtimeSplit);
 
         // Gets list of all movies in the db and displays a dropdown menu for picking the movie for showtime display
-        List<Movie> movies = movieService.fetchAll();
+        List<Movie> moviesAll = movieService.fetchAll();
+        List<Movie> inCinema = new ArrayList<>();
+        for(int i = 0; i < moviesAll.size(); i++){
+            List<Showtime> sm = showtimeService.fetchShowtimeFuture(moviesAll.get(i).getId());
+            if(sm.size() > 0){
+                inCinema.add(moviesAll.get(i));
+            }
+        }
         model.addAttribute("moviePojo", m);
-        model.addAttribute("movies", movies);
+        model.addAttribute("movies", inCinema);
 
         // If employee uses date selection, will display showtimes for selected date at the bottom of the page.
         boolean d = false;

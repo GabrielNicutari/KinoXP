@@ -33,6 +33,13 @@ public class ShowtimeRepo {
         return template.queryForObject(sql, rowMapper, showtimeId);
     }
 
+    public List<Showtime> fetchShowtimeFuture(int movieId){
+        String sql = "SELECT * FROM showtime WHERE date_time > CURRENT_DATE()-1 AND movie_id = ?";
+        RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
+        List<Showtime> future = template.query(sql, rowMapper, movieId);
+        return future;
+    }
+
     public List<Showtime> fetchAllInWeekWithMovieId (int movieId){
         String sql = "SELECT*FROM showtime WHERE date_time BETWEEN CURRENT_DATE() AND CURRENT_DATE()+6 AND movie_id = ?";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
