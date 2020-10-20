@@ -15,7 +15,7 @@ class MovieTest {
     Movie test_movie= new Movie(1234,"TEST MOVIE",18,600,"TEST GENRE","TEST DESC","MOVIE NAME","TEST TYPE",test_date,test_date,test_time);
     @Test
     void getId() {
-        assertEquals(0,test_movie.getId());
+        assertEquals(1234,test_movie.getId());
     }
 
     @Test
@@ -98,13 +98,13 @@ class MovieTest {
 
     @Test
     void testHashCode() {
-        assertEquals(-1116349709,test_movie.hashCode());
+        assertEquals(-147715743,test_movie.hashCode());
 
     }
 
     @Test
     void testToString() {
-        assertEquals("Movie{id=0, title='TEST MOVIE', ageRequirement=18, duration=600, genre='TEST GENRE', description='TEST DESC', actor='null'}",test_movie.toString());
+        assertEquals("Movie{id=1234, title='TEST MOVIE', ageRequirement=18, duration=600, genre='TEST GENRE', description='TEST DESC', actor='null'}",test_movie.toString());
 
     }
 }
