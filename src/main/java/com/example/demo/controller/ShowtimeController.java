@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.model.Movie;
 import com.example.demo.model.Showtime;
 import com.example.demo.model.ShowtimeSplit;
+import com.example.demo.repository.TicketsRepo;
 import com.example.demo.service.MovieService;
 import com.example.demo.service.ShowtimeService;
+import com.example.demo.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class ShowtimeController {
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    TicketService ticketService;
 
     @PostMapping("/saveShowtimeSplit/{movieId}")
     public String saveShowtimeSplit (@PathVariable("movieId") int movieId, ShowtimeSplit showtimeSplit){
@@ -70,6 +75,45 @@ public class ShowtimeController {
         model.addAttribute("days", lists);
         Movie m = movieService.getOne(movieId);
         model.addAttribute("title", m.getTitle());
+
+        // Get available seats:
+        List<List<String>> weekSeats = new ArrayList<>();
+        System.out.println("lists.size: " + lists.size());
+        for(int i = 0; i < lists.size(); i++){
+            System.out.println("Lists for loop index: " + i);
+            List<Showtime> iter = lists.get(i);
+            List<String> daySeats = new ArrayList<>();
+            System.out.println("iter.size: " + iter.size());
+            for(int j = 0; j < iter.size(); j++){
+                System.out.println("Inner for loop index: " + i);
+                System.out.println("The showtimeId i'm passing on: " + iter.get(j).getId());
+                int booked = ticketService.amountOfTicketsForShowtime(iter.get(j).getId());
+                int kr1 = 240 - booked;
+                int kr2 = 400 - booked;
+                String available = "";
+                if(iter.get(j).getRoomId() == 1){ //240
+                    available = ""+ kr1 + "/" + 240;
+                    System.out.println(available);
+                } else if (iter.get(j).getRoomId() == 2){ //400
+                    available = ""+ kr2 + "/" + 400;
+                    System.out.println(available);
+                }
+                System.out.println("Adding available: " + available);
+                daySeats.add(available);
+            }
+            System.out.println("Outer for loop, daySeats.size: " + daySeats.size());
+            weekSeats.add(daySeats);
+        }
+        System.out.println();
+        System.out.println("Printing weekseats: ");
+        for(int i = 0; i < weekSeats.size(); i++){
+            for(int k = 0; k < weekSeats.get(i).size(); k++){
+                System.out.println(weekSeats.get(i).get(k));
+            }
+        }
+        //
+        model.addAttribute("available", weekSeats);
+
 
         // Create New Showtime:
         ShowtimeSplit showtimeSplit = new ShowtimeSplit();

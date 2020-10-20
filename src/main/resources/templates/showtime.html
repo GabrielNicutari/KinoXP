@@ -26,28 +26,28 @@
             </td>
         </div>
         <!--<span th:text="${#temporals.format(day1[0].dateTime, 'dd/MMM/yyyy')}"> </span>-->
-        <td th:each="showtime : ${day}">
-            &nbsp;
-            <a th:href="@{'/testTicket/'+${showtime.id}}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}">
+        <td th:each="showtime, iter : ${day}">
+            &nbsp;&nbsp; &nbsp; &nbsp;
+            <a th:href="@{'/selectSeats/'+${showtime.id}}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}">
                 Link with showtime
             </a>
 
             <span th:text="R+${showtime.roomId}"></span>
 
+            <span th:text="${available[__${stat.index}__][__${iter.index}__]}"></span>
+
             <a th:href="@{'/deleteShowtime/'+${showtime.id}}"/>
             <button>Del</button>
-            &nbsp;
+
+            &nbsp; &nbsp; &nbsp;
         </td>
 
     </tr>
 </table>
-
 <br>
 <br>
 
 <h3>Create new showtime for the movie: </h3>
-
-<br>
 
 <form action="#" th:action="@{|/saveShowtimeSplit/${showtimeSplit.movieId}|}" th:object="${showtimeSplit}" method="post">
     Room number:
@@ -62,8 +62,8 @@
 
 <br>
 <br>
-<h4>Find showtimes for a specific date: </h4>
-<br>
+<h3>Find showtimes for a specific date: </h3>
+
 <form th:action="@{|/showtime/${movieId}|}" method="get">
     <input id="dateSelected" type="date" name="dateSelected" th:min="${today}" placeholder="selectDate">
     <button type="submit">Search</button>
@@ -81,7 +81,6 @@
             <br>
             <th>Time</th>
             <th>Room</th>
-            <th>Seats Available</th>
         </tr>
         </thead>
         <tbody>
@@ -93,7 +92,6 @@
             </td>
             <!--<td> <a th:href="@{'/testTicket/'+${showtime.id}" th:text="${#temporals.format(showtime.dateTime, 'HH:mm')}"/></td>-->
             <td th:text="${showtime.roomId}"/>
-            <td>insert</td>
             <td>
                 <a th:href="@{'/deleteShowtime/'+${showtime.id}}"/>
                 <button>Del</button>

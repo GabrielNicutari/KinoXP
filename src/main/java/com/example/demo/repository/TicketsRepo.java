@@ -47,7 +47,7 @@ public class TicketsRepo {
                 "FROM ticket t " +
                 "JOIN showtime s ON  t.showtime_id=s.id " +
                 "JOIN room r ON s.room_id = r.id " + //checking how many seats there are in the cinema
-                "WHERE showtime_id = ?;";
+                "WHERE showtime_id = ?";
         RowMapper<Ticket> rm = new BeanPropertyRowMapper<>(Ticket.class);
         return jdbcTemplate.query(query, rm, showtimeId, showtimeId);
 
