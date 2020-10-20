@@ -12,9 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.ITERABLE;
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -32,21 +36,19 @@ class MovieRepoTest {
 
     @Test
     void findById() {
-    }
-
-    @Test
-    void add() {
-    }
-
-    @Test
-    void update() {
+        assertThat(movieRepo.findById(2)).isNotNull();
+        assertThat(movieRepo.findById(2)).isExactlyInstanceOf(Movie.class);
     }
 
     @Test
     void delete() {
+        assertThat(movieRepo.delete(25)).isFalse();
     }
 
     @Test
     void fetchActorsByMovieId() {
+      assertThat(movieRepo.fetchActorsByMovieId(4)).isNotEmpty();
+      assertThat(movieRepo.fetchActorsByMovieId(4)).isInstanceOf(ArrayList.class);
+
     }
 }

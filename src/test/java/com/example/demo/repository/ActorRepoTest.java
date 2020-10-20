@@ -41,6 +41,7 @@ class ActorRepoTest {
     void findByName() {
         Actor temp= new Actor(6,"Tim Roth");
       assert(temp.equals(actorRepoTest.findByName("Tim Roth")));
-
+      assertThat(actorRepoTest.findByName("Tim Roth")).isNotNull();
+      assertThat(actorRepoTest.findByName("Tim Roth")).isExactlyInstanceOf(Actor.class);
     }
 }

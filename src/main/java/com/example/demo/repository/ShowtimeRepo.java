@@ -68,7 +68,7 @@ public class ShowtimeRepo {
     public int fetchRoomIdFromShowtime (int showtimeId){
         String sql = "SELECT showtime.room_id FROM showtime WHERE id = ?";
         RowMapper<Integer> rowMapper = new BeanPropertyRowMapper<>(Integer.class);
-        List<Integer> roomIds = template.query(sql, rowMapper);
+        List<Integer> roomIds = template.query(sql, rowMapper,showtimeId);
         return roomIds.get(0);
     }
 
