@@ -23,7 +23,7 @@
         <td th:text="${ticket.title}"/>
         <td th:text="${ticket.dateTime}"/>
         <td><form action="#" th:action="@{'/cancelTicket/'+${ticket.id}}" method="post">
-            <input type="submit" value="Delete Contract">
+            <input type="submit" value="Cancel reservation">
         </form></td>
     </tr>
     </tbody>

@@ -36,6 +36,15 @@ public class TicketController {
         return "viewTickets";
 
     }
+    @PostMapping("/viewTicketsForShowtime")
+    public String viewTicketForShowtime(@ModelAttribute Ticket ticket, Model model){
+        System.out.println(ticket);
+        var ls = ticketService.soldTicketsForShowTime(ticket.getId());
+        System.out.println(ls);
+        model.addAttribute("tickets",ls);
+        return "viewTickets";
+
+    }
 
     @PostMapping("/cancelTicket/{id}")
     public String cancelContract(@PathVariable("id") int id){

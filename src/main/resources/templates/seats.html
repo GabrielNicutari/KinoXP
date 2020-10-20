@@ -50,6 +50,10 @@
         </form>
 
         <div>for that show time there been sold<span id="soldSeats"></span> tickets</div>
+        <form action="viewTicketsForShowtime" method="post">
+            <input type="number" name="id" th:value="${showtimeId}" hidden>
+            <input type="submit" value="See tickets for that showtime">
+        </form>
         <script src="script.js" type="text/javascript" ></script>
 
     </div>
