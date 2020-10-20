@@ -38,18 +38,18 @@ public class TicketController {
     }
     @PostMapping("/viewTicketsForShowtime")
     public String viewTicketForShowtime(@ModelAttribute Ticket ticket, Model model){
-        System.out.println(ticket);
         var ls = ticketService.soldTicketsForShowTime(ticket.getId());
-        System.out.println(ls);
         model.addAttribute("tickets",ls);
         return "viewTickets";
 
     }
 
-    @PostMapping("/cancelTicket/{id}")
-    public String cancelContract(@PathVariable("id") int id){
-        ticketService.cancelTicket(id);
-        return "bookTicket";
+    @PostMapping("/cancelTicket")
+    public String cancelContract(@ModelAttribute Ticket ticket, Model model){
+        int showtime = ticketService.getShowtimeToTicket(ticket.getId());
+        ticketService.cancelTicket(ticket.getId());
+        model.addAttribute("tickets", ticketService.soldTicketsForShowTime(showtime));
+        return "viewTickets";
     }
 
 

@@ -21,6 +21,14 @@ public class TicketsRepo {
         RowMapper <Ticket> rowMapper = new BeanPropertyRowMapper<>(Ticket.class);
         return jdbcTemplate.query(query, rowMapper);
     }
+    public List<Ticket> getTicketById(int id){
+        String query = "SELECT * FROM ticket " +
+                "WHERE id = ?" ;
+        RowMapper <Ticket> rowMapper = new BeanPropertyRowMapper<>(Ticket.class);
+        return jdbcTemplate.query(query, rowMapper, id);
+
+    }
+
 
     public List<Ticket> soldTicketsForShowtime(int showtimeId){ //return a list of all the tickets that sold for a showtime
         String query = "SELECT * FROM ticket WHERE " +

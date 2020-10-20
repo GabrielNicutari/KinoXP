@@ -18,6 +18,14 @@ public class TicketService {
         return ticketsRepo.fetchAll();
     }
 
+    public Ticket getTicketById(int id){
+        return ticketsRepo.getTicketById(id).get(0);
+    }
+
+    public int getShowtimeToTicket(int id){
+        return getTicketById(id).getShowtimeId();
+    }
+
     public List<Ticket> soldTicketsForShowTime(int showtimeId){
         return ticketsRepo.soldTicketsForShowtime(showtimeId);
     }
