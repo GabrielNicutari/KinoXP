@@ -22,6 +22,13 @@ public class MovieRepo {
         return template.query(query, rm);
     }
 
+    public List<Movie> fetchAllThisWeek() {
+        String query = "SELECT DISTINCT m.id, m.title, m.image FROM movie m, showtime s WHERE s.movie_id = m.id " +
+                "AND s.date_time BETWEEN CURRENT_DATE() AND CURRENT_DATE()+6";
+        RowMapper<Movie> rm = new BeanPropertyRowMapper<>(Movie.class);
+        return template.query(query, rm);
+    }
+
     public Movie findById(int id) {
         String query = "SELECT m.* FROM movie m WHERE m.id = ?";
         RowMapper<Movie> rowMapper = new BeanPropertyRowMapper<>(Movie.class);
@@ -104,4 +111,6 @@ public class MovieRepo {
         RowMapper<Actor> rm = new BeanPropertyRowMapper<>(Actor.class);
         return template.query(query, rm);
     }
+
+
 }

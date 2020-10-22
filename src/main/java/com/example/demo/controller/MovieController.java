@@ -26,10 +26,9 @@ public class MovieController {
 
     @GetMapping("/")
     public String fetchAllIndex(Model model){
-        List<Movie> movieList = movieService.fetchAll();
+        List<Movie> movieList = movieService.fetchAllThisWeek();
 
         model.addAttribute("movies", movieList);
-        System.out.println("sdfas");
 
         return "/index";
     }

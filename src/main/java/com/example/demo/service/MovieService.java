@@ -14,7 +14,6 @@ public class MovieService {
     private MovieRepo movieRepo;
 
     public List<Movie> fetchAll(){
-        //movieRepo.checkActorTable("Samuel L. Jackson, Hugh Jackman,  Jennifer Lawrence");
         return movieRepo.fetchAll();
     }
 
@@ -36,5 +35,9 @@ public class MovieService {
 
     public List<Actor> fetchActorsByMovieId(int movieId) {
         return movieRepo.fetchActorsByMovieId(movieId);
+    }
+
+    public List<Movie> fetchAllThisWeek() {
+        return movieRepo.fetchAllThisWeek();
     }
 }

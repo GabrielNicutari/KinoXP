@@ -21,12 +21,14 @@ public class ShowtimeRepo {
         List<Showtime> showtimesFound = template.query(sql, rowMapper);
         return showtimesFound;
     }
+
     public List<Showtime> fetchAllWithMovieId(int movieId){
         String sql = "SELECT * FROM showtime WHERE movie_id = ? ORDER BY date_time";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
         List<Showtime> showtimesForMovie = template.query(sql, rowMapper, movieId);
         return showtimesForMovie;
     }
+
     public Showtime fetchShowtimeWithId(int showtimeId){
         String sql = "SELECT * FROM showtime WHERE showtime.id = ?";
         RowMapper<Showtime> rowMapper = new BeanPropertyRowMapper<>(Showtime.class);
