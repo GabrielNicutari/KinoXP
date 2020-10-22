@@ -108,8 +108,8 @@ input[type=button]:hover {
 .navbar {
     overflow: hidden;
     background-color: #333;
-    position: fixed;
-    width: 100%;
+    position: absolute;
+    width: 1920px;
     z-index: 5;
     top: 6em;
 }
