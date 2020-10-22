@@ -55,6 +55,7 @@ function getMovie() {
             
             <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
             <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
+            <a href="/showtime/${movie.id}" class="btn btn-info showtimeButton">Movie Showtimes</a>
             
        </div>
     </div>`;

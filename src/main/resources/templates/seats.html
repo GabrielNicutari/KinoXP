@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+
     <link rel="stylesheet"  th:href="@{/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>seatsSmall</title>
 </head >
 <body onload="loadPage()" >
@@ -20,7 +22,7 @@
             <small>Occupied</small>
         </li>
     </ul>
-    <div class="container">
+    <div class="container" id="seatBlock">
         <table>
             <thead id ="thead">
             </thead>
@@ -28,8 +30,8 @@
             <tr class="classRow" th:each ="row : ${seats}">
                 <div class="row">
                     <td th:each = "seat : ${row}" class="seatCounter">
-                        <div th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
-                        </div>
+                        <button th:id ="${seat.number}" th:class="seat +${seat.status}" onclick="getId(this)" >
+                        </button>
                     </td>
                     <th><span  class="rowNumber" id="rowNumber"></span></th>
                 </div>

@@ -15,11 +15,19 @@ body {
     height:auto;
     font-family: 'Montserrat', sans-serif;
     margin: 60px 0;
+    cursor: default;
 }
 
-.container {
-    perspective: 1000px;
-    margin-bottom: 30px;
+@media (min-width: 960px) {
+    .container {
+        perspective: 1000px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        user-select: none;
+        max-width: 580px!important;
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
 }
 
 ul.legend {
@@ -39,12 +47,30 @@ span {
 }
 
 .seat {
-    background-color: #920000;
+    background-color: #A00000 ;
     height: 24px;
     width: 30px;
     margin: 4px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    transition: all 0.4s ease 0s;
+    border-style: hidden;
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
+    -webkit-transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+}
+
+.seat:hover {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+
+.seat:focus {
+    outline: none;
 }
 
 .seat.selected {

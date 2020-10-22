@@ -140,6 +140,4 @@ public class ShowtimeController {
         return "redirect:/showtime/"+moviePojo.getId();
     }
 
-
-
 }
