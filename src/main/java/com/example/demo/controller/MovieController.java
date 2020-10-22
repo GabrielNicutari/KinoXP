@@ -24,6 +24,16 @@ public class MovieController {
     @Autowired
     private ShowtimeService showtimeService;
 
+    @GetMapping("/")
+    public String fetchAllIndex(Model model){
+        List<Movie> movieList = movieService.fetchAll();
+
+        model.addAttribute("movies", movieList);
+        System.out.println("sdfas");
+
+        return "/index";
+    }
+
     @GetMapping("/movies")
     public String fetchAll(Model model){
         List<Movie> movieList = movieService.fetchAll();
