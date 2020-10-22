@@ -116,7 +116,7 @@ input[type=button]:hover {
 
 .navbar-nav{
     display: flex;
-    margin-left: 41.7%;
+    margin-left: 45%;
 }
 
 .logo-image{
@@ -162,16 +162,23 @@ input[type=button]:hover {
 .slideshow-container {
     padding-top: 10em;
     margin-top: 10em;
-    height: 400px;
+    height: 500px;
     width: 100%;
     position: relative;
     margin: auto;
     padding-bottom: 1em;
 }
 
+
 /* Hide the images by default */
 .mySlides {
     display: none;
+    transition: all 0.8s ease 0s;
+}
+
+.mySlides:hover {
+    transform: scale(1.05);
+    transition: all 0.8s ease 0s;
 }
 
 /* Next & previous buttons */
@@ -240,9 +247,9 @@ input[type=button]:hover {
 /* Fading animation */
 .fade {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 3s;
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
 }
 
 @-webkit-keyframes fade {
@@ -260,13 +267,13 @@ input[type=button]:hover {
 }
 
 .collapse navbar-collapse {
-    background-color: orange;
+    background-color: #2a9fd6;
 }
 
 .cheetahlogo {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 80px;
+    width: 263px;
     height: 80px;
     background: url("/images/Cheetah.png") center;
     background-size: 100% 100%;
@@ -280,14 +287,14 @@ input[type=button]:hover {
 }
 
     .navbar-expand-lg .navbar-collapse {
-       background-color: #fb8b04;
+       background-color: #2a9fd6;
         width: 100%;.navbar.bg-dark
         padding: 0;
         margin: 0;
     }
 
 .navbar.bg-dark {
-    background-color: #fb8b04 !important;
+    background-color: #2a9fd6 !important;
     border: 1px solid #282828;
 }
 
@@ -306,7 +313,6 @@ body {
 }
 
 .white-box { width: 100%; height: 200px; margin-top: 50px; margin-left: auto; margin-right: auto;
-    background: rgba(255,255,255,0.9);
     padding: 30px;
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
@@ -317,17 +323,45 @@ body {
     -o-border-radius: 5px;
     border-radius: 0;
     margin-top: 7em;
+    text-align: center;
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: black;
 }
+
+.nav-link:focus{
+    outline: none;
+}
+
 .active, .dot:hover {
     color: white;
     background-color: transparent;
 }
 
 .btn-primary {
-    background-color: #fb8b04;
-    border-color: 	#fb8b04;
+   position: absolute;
+    bottom: 40px;
+    right: 80px;
 }
+
+.nav-link {
+    border-right: 1px solid black;
+}
+
+.fa {
+    font-size: 80px;
+    color: #2a9fd6;
+}
+
+.mb-5, .my-5 {
+    margin-bottom: 3rem !important;
+    align-content: center;
+    text-align: -webkit-center;
+}
+
+.text-center {
+    text-align: center !important;
+    color: #2a9fd6
+}
+

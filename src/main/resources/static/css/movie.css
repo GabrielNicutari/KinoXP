@@ -209,6 +209,12 @@ div{
     height: 100%;
 }
 
+.btn-primary {
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+}
+
 
 
 
