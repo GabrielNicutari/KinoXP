@@ -34,6 +34,19 @@ ul.legend {
     padding-right: 30px;
 }
 
+form{
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: inline-block;
+}
+
+input{
+    width: 146px;
+    margin-bottom: 5px;
+}
+
 .columnNumber {
     text-align: center;
     height: 24px;
