@@ -24,7 +24,7 @@ public class MovieController {
     @Autowired
     private ShowtimeService showtimeService;
 
-    @GetMapping("/moviesIndex")
+    @GetMapping("/")
     public String fetchAllIndex(Model model){
         List<Movie> movieList = movieService.fetchAll();
 

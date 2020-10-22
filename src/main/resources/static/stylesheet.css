@@ -258,13 +258,6 @@ input[type=button]:hover {
     opacity: 1;
 }
 
-.jumbotron {
-    margin-top: 1em !important;
-    padding: 0;
-    background-color: white;
-    border-radius: 0;
-}
-
 .collapse navbar-collapse {
     background-color: orange;
 }
