@@ -169,9 +169,16 @@ input[type=button]:hover {
     padding-bottom: 1em;
 }
 
+
 /* Hide the images by default */
 .mySlides {
     display: none;
+    transition: all 0.8s ease 0s;
+}
+
+.mySlides:hover {
+    transform: scale(1.05);
+    transition: all 0.8s ease 0s;
 }
 
 /* Next & previous buttons */
@@ -240,9 +247,9 @@ input[type=button]:hover {
 /* Fading animation */
 .fade {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 3s;
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
 }
 
 @-webkit-keyframes fade {
@@ -344,7 +351,7 @@ body {
 
 .fa {
     font-size: 80px;
-    color: white;
+    color: #2a9fd6;
 }
 
 .mb-5, .my-5 {
@@ -355,5 +362,6 @@ body {
 
 .text-center {
     text-align: center !important;
-    color: white;
+    color: #2a9fd6
 }
+
