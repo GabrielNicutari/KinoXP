@@ -56,11 +56,6 @@ function getMovie() {
             <a href="/movies/viewOne/?id=${movie.id}" class="btn btn-warning editButton">Update Movie</a>
             <a href="/movies/delete/?id=${movie.id}" class="btn btn-danger deleteButton">Delete Movie</a>
             
-            <div class="form-group" style="display: inline-block" role="group">
-                <select id="showtime-select" class="custom-select">
-                    <option selected="">Pick A Date</option>
-                </select>
-            </div>
        </div>
     </div>`;
 
