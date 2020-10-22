@@ -116,7 +116,7 @@ input[type=button]:hover {
 
 .navbar-nav{
     display: flex;
-    margin-left: 41.7%;
+    margin-left: 45%;
 }
 
 .logo-image{
@@ -268,7 +268,7 @@ input[type=button]:hover {
     box-sizing: border-box;
     width: 263px;
     height: 80px;
-    background: url("/images/Cheetah.png") center;
+    background: url("/static/images/CheetahBlue.png") center;
     background-size: 100% 100%;
     z-index: 5;
     display: block !important;
