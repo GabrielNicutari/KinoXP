@@ -268,7 +268,7 @@ input[type=button]:hover {
     box-sizing: border-box;
     width: 263px;
     height: 80px;
-    background: url("/static/images/CheetahBlue.png") center;
+    background: url("/images/Cheetah.png") center;
     background-size: 100% 100%;
     z-index: 5;
     display: block !important;
@@ -323,6 +323,11 @@ body {
 .navbar-dark .navbar-nav .nav-link {
     color: black;
 }
+
+.nav-link:focus{
+    outline: none;
+}
+
 .active, .dot:hover {
     color: white;
     background-color: transparent;
