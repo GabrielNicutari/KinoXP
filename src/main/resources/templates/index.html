@@ -5,6 +5,7 @@
     <title>KinoXP Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/movies.css}">
     <link th:href="@{/stylesheet.css}" rel="stylesheet" >
 
     <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
@@ -99,12 +100,12 @@
     </div>
 
 <!--    <section class="bottom-section">-->
-<!--    </section>-->
     <script th:inline="javascript">
         /*<![CDATA[*/
         var movies = /*[[${movies}]]*/ [];
         /*]]>*/
     </script>
+    <script th:src="@{/js/movies.js}"></script>
     <script th:src="@{/js/index.js}"></script>
 </body>
 </html>
