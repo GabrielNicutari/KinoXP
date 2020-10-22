@@ -36,6 +36,11 @@ public class TicketController {
         return "viewTickets";
 
     }
+    @GetMapping("/tickets")
+    public String viewAllTickets(Model model){
+        model.addAttribute("tickets", ticketService.fetchAll());
+        return "viewTickets";
+    }
     @PostMapping("/viewTicketsForShowtime")
     public String viewTicketForShowtime(@ModelAttribute Ticket ticket, Model model){
         var ls = ticketService.soldTicketsForShowTime(ticket.getId());
