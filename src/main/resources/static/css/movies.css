@@ -98,3 +98,45 @@ input {
     }
 }
 
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    /*position: absolute;*/
+    /*width: 1920px;*/
+    z-index: 0;
+    /*top: 6em;*/
+}
+
+.navbar-nav{
+    display: flex;
+}
+
+.collapse navbar-collapse {
+    background-color: #2a9fd6;
+
+}
+
+.navbar-expand-lg .navbar-collapse {
+    background-color: #2a9fd6;
+    width: 100%;.navbar.bg-dark
+padding: 0;
+    margin: 0;
+    justify-content: center!important;
+}
+
+.navbar.bg-dark {
+    background-color: #2a9fd6 !important;
+    border: 1px solid #282828;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: black;
+}
+
+.nav-link:focus{
+    outline: none;
+}
+.nav-link {
+    border-right: 1px solid black;
+}
+
