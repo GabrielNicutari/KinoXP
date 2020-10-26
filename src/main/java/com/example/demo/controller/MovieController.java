@@ -63,7 +63,7 @@ public class MovieController {
         model.addAttribute("movie", m);
         model.addAttribute("times", map);
 
-        return "/movie";
+        return "movie";
     }
 
     //Use this only to populate the pop-up automatically
@@ -94,7 +94,7 @@ public class MovieController {
     @PostMapping(value="/tickets/add")
     public String add(@ModelAttribute Test t, Model model) {
         model.addAttribute("ticket", t);
-        return "/test";
+        return "test";
     }
 
     @RequestMapping(value="/movies/update", method = {RequestMethod.PUT, RequestMethod.GET})
