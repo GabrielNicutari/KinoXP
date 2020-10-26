@@ -30,7 +30,7 @@ public class MovieController {
 
         model.addAttribute("movies", movieList);
 
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/movies")
@@ -39,7 +39,7 @@ public class MovieController {
 
         model.addAttribute("movies", movieList);
 
-        return "/movies";
+        return "movies";
     }
 
     @GetMapping("/movies/getOne/{id}")
